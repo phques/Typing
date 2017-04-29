@@ -12,7 +12,6 @@
 int main()
 {
     /* Initialize the typing data and the keyboard layout settings. */
-	initCosts(); //PQ moved from initValues
     setksize(K_NO);
     getCommands();
     

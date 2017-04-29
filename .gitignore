@@ -15,5 +15,3 @@ Typing.1
 *.xcodeproj
 performance data
 *.org
-/.vs
-*.exe

@@ -639,7 +639,7 @@ void initVariables()
     ADD_VAR(homeJumpIndex, NULL);
     ADD_VAR(doubleJump, NULL);
     ADD_VAR(toCenter, NULL);
-	ADD_VAR(toOutside, NULL);
+    ADD_VAR(toOutside, NULL);
     
 #undef ADD_VAR
 }
@@ -700,23 +700,6 @@ int setValue(char *str)
 	
     printf("Unknown variable \"%s\". Type \"variables\" for a complete listing of possible variables.\n\n", name);
     return 1;
-}
-
-int sethandbias(char *str)
-{
-	int value = atoi(str);
-	leftHandCost = rightHandCost = 0;
-
-	if (value < 0)
-		leftHandCost = -value;
-	else
-		rightHandCost = value;
-
-	printf("setting leftHandCost to %d\n", leftHandCost);
-	printf("setting rightHandCost to %d\n", rightHandCost);
-	printf("calling setksize\n");
-	setksize(fullKeyboard);
-	return 0;
 }
 
 int cmpMonographsByValue(const void *one, const void *two)

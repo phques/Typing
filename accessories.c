@@ -38,7 +38,6 @@ int getCommands()
 			printf("use <keys>: Use <keys> in the keyboard layout instead of the default.\n");
 			printf("worst <filename>: Find the worst digraphs for the keyboard layouts in <filename>.\n");
 			printf("variables: Print all variables that can be modified.\n");
-			printf("sethandbias: adds cost to one hand. < 0 for left hand, > 0 for right hand (auto calls setksize)\n");
 			printf("quit: Quit the keyboard optimization program.\n");
 			printf("\n");
 
@@ -79,10 +78,6 @@ int getCommands()
 
 		} else if (streqn(cmd, "set ", strlen("set "))) {
 			setValue(cmd + 4);
-
-		}
-		else if (streqn(cmd, "sethandbias ", strlen("sethandbias "))) {
-			sethandbias(cmd + 12);
 
 		} else if (streqn(cmd, "setksize ", strlen("setksize "))) {
 			size_t str_len = strlen("setksize ");

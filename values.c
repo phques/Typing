@@ -7,16 +7,13 @@
  */
 
 #include "values.h"
-#include "tools.h"
 
 int initValues()
 {
 	int i;
 	
-	//initCosts(); //PQ moved to main
+	initCosts();
 	
-	int64_t* pCostsCopy = NULL;
-
 	if (fullKeyboard == K_NO) {
 		// Set keyboard position costs. These costs were determined by looking 
 		// at how the positions were valued on some of the best alternative 
@@ -26,8 +23,10 @@ int initValues()
 			  0,   0,   0,   0,  30,  30,   0,   0,   0,   0, 
 			 70,  70,  70,  50,  95,  60,  40,  60,  70,  70, 
 		};
-		pCostsCopy = costsCopy;
-			
+	
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+		
 	} else if (fullKeyboard == K_STANDARD) {
 		
 		// These costs are optimized for a full standard layout. Any cost that 
@@ -38,7 +37,8 @@ int initValues()
 			999,   0,   0,   0,   0,  30,  30,   0,   0,   0,   0,  50, 999, 999, 
 			999,  70,  70,  70,  50,  95,  60,  40,  60,  70,  70, 999, 999, 999, 
 		};
-		pCostsCopy = costsCopy;
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
 			
 	} else if (fullKeyboard == K_KINESIS) {
 		
@@ -52,7 +52,8 @@ int initValues()
 			999, 140, 140, 999, 999, 999, 999, 999, 999, 140, 140, 999, 	
 			  0,  50, 999, 999, 999, 999, 999, 999, 999, 999,  50,   0, 
 		};
-		pCostsCopy = costsCopy;
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
 		
 	} else if (fullKeyboard == K_IPHONE) {
 		
@@ -62,13 +63,9 @@ int initValues()
 			  20,  10,   0,   0,  10,  10,   0,   0,  10, 999,
 			 999,  60,  50,  30,  20,  20,  50,  60, 999, 999, 
 		};
-		pCostsCopy = costsCopy;
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
 		
-	}
-
-	for (i = 0; i < ksize; ++i) {
-		int handCost = (hand[i] == LEFT ? leftHandCost : rightHandCost);
-		distanceCosts[i] = pCostsCopy[i] + handCost;
 	}
 
 	// Based on distance from the ctrl key and how much of a stretch it is.
@@ -155,7 +152,4 @@ void initCosts()
 	
 	shiftCost =		100;
 	doubleShiftCost=150;
-
-	leftHandCost = 0;
-	rightHandCost = 0;
 }
