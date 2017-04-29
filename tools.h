@@ -129,6 +129,7 @@ int variablesLength;
 void initVariables();
 int getValue(const char *name);
 int setValue(char *str);
+int sethandbias(char *str);
 
 #define isBracket(c) (getMatchingBracket(c) != 0)
 char getMatchingBracket(char c);

@@ -702,6 +702,34 @@ int setValue(char *str)
     return 1;
 }
 
+int sethandbias(char *str)
+{
+	int value = atoi(str);
+	int oldLeftHandCost = leftHandCost;
+	int oldRightHandCost = rightHandCost;
+
+	leftHandCost = rightHandCost = 0;
+
+	if (value < 0)
+		leftHandCost = -value;
+	else
+		rightHandCost = value;
+
+	printf("setting leftHandCost to %d\n", leftHandCost);
+	printf("setting rightHandCost to %d\n", rightHandCost);
+
+	int leftAdjust = leftHandCost - oldLeftHandCost;
+	int rightAdjust = rightHandCost - oldRightHandCost;
+
+	for (int i = 0; i < ksize; ++i) {
+		int handCost = (hand[i] == LEFT ? leftAdjust : rightAdjust);
+		printf("handCost adjust %d\n", handCost);
+		distanceCosts[i] += handCost;
+	}
+
+	return 0;
+}
+
 int cmpMonographsByValue(const void *one, const void *two)
 {
     int64_t val1 = ((struct Monograph *) one)->value;

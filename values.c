@@ -152,4 +152,7 @@ void initCosts()
 	
 	shiftCost =		100;
 	doubleShiftCost=150;
+
+	leftHandCost = 0;
+	rightHandCost = 0;
 }

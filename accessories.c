@@ -33,6 +33,7 @@ int getCommands()
 			printf("make typing data: Use the files in freq_types to customize character and digraph frequency.\n");
             printf("run: See 'algorithm'.\n");
 			printf("set <variable> <value>: Set the specified variable to the given value.\n");
+			printf("sethandbias <bias>: adds cost to one hand. < 0 for left hand, > 0 for right hand\n");
 			printf("setksize <K_setting>: Set the keyboard type. Type \"setksize help\" for more information.\n");
 			printf("test fitness: Test that the fitness functions are working properly.\n");
 			printf("use <keys>: Use <keys> in the keyboard layout instead of the default.\n");
@@ -78,6 +79,9 @@ int getCommands()
 
 		} else if (streqn(cmd, "set ", strlen("set "))) {
 			setValue(cmd + 4);
+
+		} else if (streqn(cmd, "sethandbias ", strlen("sethandbias "))) {
+			sethandbias(cmd + 12);
 
 		} else if (streqn(cmd, "setksize ", strlen("setksize "))) {
 			size_t str_len = strlen("setksize ");
