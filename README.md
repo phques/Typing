@@ -1,6 +1,6 @@
-Changes to forked, PQ
-2017-04-29 Added sethandbias
-2017-04-30 Added "curlaz30" kbd
+Changes to forked, PQ  
+2017-04-29 Added sethandbias  
+2017-04-30 Added "curlaz30" kbd  
 
 
 ABOUT
