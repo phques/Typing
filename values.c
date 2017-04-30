@@ -66,6 +66,28 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 		
+	} else	if (fullKeyboard == K_CURLAZ30) {
+		/* Left hand bottom row, using 'angleZ' ergo mod, where the lower keys are
+		accessed to the left rather than to the right, following natural curving of fingers.
+		Values converted from colemak mod-dh base efforts
+		assumed range 1..4 => 0..100
+		Also original values are for *ISO* kbd with shift
+		so left bottom 3.5 2.8 2.5 1.7 2.6
+		becomes        2.8 2.5 1.7 2.6 3.8 for *us* kbd
+		3.5 2.4 2.0 2.2 3.4 3.8 2.2 2.0 2.4 3.5
+		1.5 1.2 1.0 1.0 2.9 2.9 1.0 1.0 1.2 1.5
+		2.8 2.5 1.7 2.6 3.8 2.6 1.7 2.5 2.8 3.5
+		*/
+		// PQ, adjusted based on personal taste (as in workman layout, avoid mid column on home row)
+		static int64_t costsCopy[KSIZE_MAX] = {
+			83,  35,  33,  40,  80,  93,  40,  33,  35,  83,
+			16,   6,   0,   0,  63,  63,   0,   0,   6,  16,
+			60,  55,  23,  50,  93,  50,  23,  55,  60,  83,
+		};
+
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 	}
 
 	// Based on distance from the ctrl key and how much of a stretch it is.

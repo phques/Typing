@@ -97,8 +97,15 @@ int getCommands()
 			} else if (streq(cmd + str_len, "iphone")) {
 				setksize(K_IPHONE);
 				printf("Keyboard set to iPhone. All user-defined values have been reset.\n\n");
+			} else if (streq(cmd + str_len, "curlaz30")) {
+				setksize(K_CURLAZ30);
+				printf("Keyboard set to curlaz30. All user-defined values have been reset.\n\n");
 			} else {
-				printf("Undefined input. Valid inputs: \"setksize no\" (do not use full keyboard), \"setksize standard\" (use standard full keyboard), \"setksize kinesis\" (use Kinesis full keyboard).\n\n");
+				puts("Undefined input. Valid inputs:");
+				puts(" \"setksize no\" (do not use full keyboard)");
+				puts(" \"setksize standard\" (use standard full keyboard)");
+				puts(" \"setksize kinesis\" (use Kinesis full keyboard)");
+				puts(" \"setksize curlaz30\" (curl angleZ 30 keys)\n");
 			}
 
 		} else if (streq(cmd, "test fitness")) {
