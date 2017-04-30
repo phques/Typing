@@ -62,6 +62,8 @@ int initData()
 	else if (fullKeyboard == K_STANDARD) strcpy(keysToInclude, DEFAULT_KEYBOARD_STANDARD);
 	else if (fullKeyboard == K_KINESIS) strcpy(keysToInclude, DEFAULT_KEYBOARD_KINESIS);
 	else if (fullKeyboard == K_CURLAZ30) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
+	else if (fullKeyboard == K_BEAK) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
+	else if (fullKeyboard == K_BEAKPQ) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 
 	initKeyboardData();
 	initTypingData();
@@ -73,7 +75,7 @@ void initKeyboardData()
 {
 	int i;
 	
-	if (fullKeyboard == K_NO) {
+	if (fullKeyboard == K_NO || fullKeyboard == K_BEAK) { // n changes here for BEAK
 		static int fingerCopy[KSIZE_MAX] = {
 			PINKY, RING, MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, 
 			PINKY, RING, MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, 
@@ -301,7 +303,7 @@ void initKeyboardData()
 		};
 		copyArray(printable, printableCopy, ksize);
 
-	} else if (fullKeyboard == K_CURLAZ30) {
+	} else if (fullKeyboard == K_CURLAZ30 || fullKeyboard == K_BEAKPQ) { // use curl/anglez for beakPQ
 		/* the only change vs K_NO is in fingerCopy */
 		static int fingerCopy[KSIZE_MAX] = {
 			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY,
@@ -853,6 +855,8 @@ void setksize(int type)
 	switch (fullKeyboard) {
 	case K_NO:
 	case K_CURLAZ30:
+	case K_BEAK:
+	case K_BEAKPQ:
 		ksize = 30;
 		trueksize = 30;
 		kbdFilename = "layoutStore.txt";

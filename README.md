@@ -1,6 +1,9 @@
 Changes to forked, PQ  
 2017-04-29 Added sethandbias  
 2017-04-30 Added "curlaz30" kbd  
+2017-04-30 Added "beak" kbd using weights from http://shenafu.com/smf/index.php?topic=89.msg785#msg785  
+2017-04-30 Added "beakpq" kbd, adjusted weights (higher cost top row index, left hand bottom anglez / curl)  
+
 
 
 ABOUT

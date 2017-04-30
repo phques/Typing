@@ -88,6 +88,34 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 
+	} else	if (fullKeyboard == K_BEAK) {
+		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
+			uses idea of 3x3 'home block' vs home row
+		*/
+		static int64_t costsCopy[KSIZE_MAX] = {
+			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
+			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
+			90, 20, 30, 10, 50, 50, 10, 30, 20, 90 
+		};
+
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
+	}
+	else if (fullKeyboard == K_BEAKPQ) {
+		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
+		uses idea of 3x3 'home block' vs home row
+		*/
+		// PQ modified for perso taste (higher cost top row index, left hand bottom anglez / curl)
+		static int64_t costsCopy[KSIZE_MAX] = {
+			90, 10, 10, 15, 50, 50, 15, 10, 10, 90,
+			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
+			20, 30, 10, 50, 80, 50, 10, 30, 20, 90
+		};
+
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 	}
 
 	// Based on distance from the ctrl key and how much of a stretch it is.
