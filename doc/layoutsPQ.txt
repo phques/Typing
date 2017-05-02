@@ -1,0 +1,8 @@
+qwfpgjluy;arstdhneiozxcvbkm,./QWFPGJLUY:ARSTDHNEIOZXCVBKM<>? Colemak
+qwfpbjluy;arstgmneioxcdvzkh,./QWFPBJLUY:ARSTGMNEIOXCDVZKH<>? colemak modDH AZ
+qgmlwbyuv;dstnriaeohzxcfjkp,./QGMLWBYUV:DSTNRIAEOHZXCFJKP<>? carpalx qgmlwb
+qgmlwyfub;dstnriaeohzxcvjkp,./QGMLWYFUB:DSTNRIAEOHZXCVJKP<>? carpalx qgmlwy
+qdrwbjfup;ashtgyneoizxmcvkl,./QDRWBJFUP:ASHTGYNEOIZXMCVKL<>? Workman
+xpthv:uocjwndrm,aesyqfblk;i.gzXPTHV<UOCJWNDRM/AESYQFBLK?I>GZ BEAKL 3.0
+zcndv:uolqprstfyaehgwbmkj;i.,xZCNDV?UOLQPRSTFYAEHGWBMKJ/I<>X mtgap beak bias-10
+xlndv:uopqbrstm,aehkwfcgj;i.yzXLNDV<UOPQBRSTM/AEHKWFCGJ?I>YZ mtgap beak bias 0

@@ -1,0 +1,313 @@
+>>> compare layouts <<<<
+
+Each done using its proper keybaord (ie setksize beak etc)
+
+--Colemak
+
+Hands: 46% 53%
+Fingers: 8.0% 8.0% 12% 19% 0.00% 0.00% 19% 16% 10% 8.0%
+
+ Q  W  F  P  G   J  L  U  Y  :
+ A  R  S  T  D   H  N  E  I  O
+ Z  X  C  V  B   K  M  <  >  ?
+
+ q  w  f  p  g   j  l  u  y  ;
+ a  r  s  t  d   h  n  e  i  o
+ z  x  c  v  b   k  m  ,  .  /
+
+Fitness:       17863040
+Distance:      12297155
+Finger work:   0
+Inward rolls:  4.70%
+Outward rolls: 2.57%
+Same hand:     42.18%
+Same finger:   1.57%
+Row change:    17.85%
+Home jump:     0.98%
+Ring jump:     3.59%
+To center:     7.86%
+
+--colemak modDH AZ
+
+Hands: 46% 53%
+Fingers: 8.0% 8.0% 12% 19% 0.00% 0.00% 19% 16% 10% 8.0%
+
+ Q  W  F  P  B   J  L  U  Y  :
+ A  R  S  T  G   M  N  E  I  O
+ X  C  D  V  Z   K  H  <  >  ?
+
+ q  w  f  p  b   j  l  u  y  ;
+ a  r  s  t  g   m  n  e  i  o
+ x  c  d  v  z   k  h  ,  .  /
+
+Fitness:       19204501
+Distance:      13928486
+Finger work:   0
+Inward rolls:  4.70%
+Outward rolls: 2.58%
+Same hand:     42.18%
+Same finger:   1.54%
+Row change:    19.59%
+Home jump:     0.76%
+Ring jump:     3.59%
+To center:     5.67%
+
+--mtgap-colemak AZ
+
+Hands: 48% 51%
+Fingers: 6.0% 11% 11% 19% 0.00% 0.00% 19% 15% 10% 8.0% 
+
+ X  F  C  P  V   J  L  U  Y  Z
+ R  A  S  T  B   K  N  E  I  O
+ ?  W  D  G  Q   M  H  /  <  >
+
+ x  f  c  p  v   j  l  u  y  z
+ r  a  s  t  b   k  n  e  i  o
+ ,  w  d  g  q   m  h  ;  .  :
+
+Fitness:       21626299
+Distance:      16665589
+Finger work:   0
+Inward rolls:  4.69%
+Outward rolls: 3.30%
+Same hand:     42.40%
+Same finger:   1.59%
+Row change:    21.54%
+Home jump:     0.87%
+Ring jump:     2.04%
+To center:     5.30%
+
+
+--mtgap-colemak AZ 2 (higher left hand cost)
+
+Hands: 45% 54%
+Fingers: 8.0% 9.0% 11% 18% 0.00% 0.00% 20% 16% 10% 8.0%
+
+ X  W  C  G  Q   J  L  U  Y  ?
+ O  R  S  T  K   P  N  E  I  A
+ V  B  D  M  Z   F  H  /  <  >
+
+ x  w  c  g  q   j  l  u  y  ;
+ o  r  s  t  k   p  n  e  i  a
+ v  b  d  m  z   f  h  ,  .  :
+
+Fitness:       23113029
+Distance:      18243674
+Finger work:   0
+Inward rolls:  5.07%
+Outward rolls: 2.39%
+Same hand:     41.46%
+Same finger:   1.75%
+Row change:    20.56%
+Home jump:     0.88%
+Ring jump:     2.94%
+To center:     4.24%
+
+--carpalx qgmlwb
+
+Hands: 48% 51%
+Fingers: 4.0% 9.0% 14% 21% 0.00% 0.00% 21% 16% 10% 5.0%
+
+ Q  G  M  L  W   B  Y  U  V  :
+ D  S  T  N  R   I  A  E  O  H
+ Z  X  C  F  J   K  P  <  >  ?
+
+ q  g  m  l  w   b  y  u  v  ;
+ d  s  t  n  r   i  a  e  o  h
+ z  x  c  f  j   k  p  ,  .  /
+
+Fitness:       20660410
+Distance:      13095470
+Finger work:   0
+Inward rolls:  2.64%
+Outward rolls: 1.42%
+Same hand:     33.04%
+Same finger:   4.98%
+Row change:    15.75%
+Home jump:     1.01%
+Ring jump:     3.01%
+To center:     8.85%
+
+
+--carpalx qgmlwy
+
+Hands: 46% 53%
+Fingers: 4.0% 9.0% 14% 20% 0.00% 0.00% 22% 16% 10% 5.0%
+
+ Q  G  M  L  W   Y  F  U  B  :
+ D  S  T  N  R   I  A  E  O  H
+ Z  X  C  V  J   K  P  <  >  ?
+
+ q  g  m  l  w   y  f  u  b  ;
+ d  s  t  n  r   i  a  e  o  h
+ z  x  c  v  j   k  p  ,  .  /
+
+Fitness:       20363675
+Distance:      13095600
+Finger work:   0
+Inward rolls:  2.89%
+Outward rolls: 1.59%
+Same hand:     33.06%
+Same finger:   4.83%
+Row change:    15.66%
+Home jump:     0.93%
+Ring jump:     3.01%
+To center:     8.52%
+
+
+--Workman
+
+Hands: 50% 49%
+Fingers: 8.0% 10% 13% 18% 0.00% 0.00% 16% 16% 10% 8.0%
+
+ Q  D  R  W  B   J  F  U  P  :
+ A  S  H  T  G   Y  N  E  O  I
+ Z  X  M  C  V   K  L  <  >  ?
+
+ q  d  r  w  b   j  f  u  p  ;
+ a  s  h  t  g   y  n  e  o  i
+ z  x  m  c  v   k  l  ,  .  /
+
+Fitness:       19260270
+Distance:      12392445
+Finger work:   0
+Inward rolls:  3.54%
+Outward rolls: 4.98%
+Same hand:     44.83%
+Same finger:   3.15%
+Row change:    22.04%
+Home jump:     1.70%
+Ring jump:     4.27%
+To center:     4.81%
+
+--beakl 3.0
+
+Hands: 52% 47%
+Fingers: 3.0% 14% 16% 19% 0.00% 0.00% 14% 19% 14% 1.0%
+
+ Q  N  L  C  F   X  :  O  H  J
+ P  R  T  S  D   U  A  E  I  K
+ V  B  M  G  W   ;  <  >  Y  Z
+
+ q  n  l  c  f   x  .  o  h  j
+ p  r  t  s  d   u  a  e  i  k
+ v  b  m  g  w   /  ,  ?  y  z
+
+Fitness:       16386729
+Distance:      9370715
+Finger work:   1069124
+Inward rolls:  2.87%
+Outward rolls: 2.17%
+Same hand:     29.26%
+Same finger:   2.62%
+Row change:    17.85%
+Home jump:     2.37%
+Ring jump:     1.20%
+To center:     5.24%
+
+--mtgap beakpq bias-10
+
+Hands: 46% 53%
+Fingers: 2.0% 11% 15% 19% 0.00% 0.00% 20% 20% 10% 2.0%
+
+ Z  C  N  D  V   ?  U  O  L  Q
+ P  R  S  T  F   Y  A  E  H  G
+ W  B  M  K  J   /  I  <  >  X
+
+ z  c  n  d  v   :  u  o  l  q
+ p  r  s  t  f   y  a  e  h  g
+ w  b  m  k  j   ;  i  .  ,  x
+
+Fitness:       15650285
+Distance:      12120835
+Finger work:   0
+Inward rolls:  8.34%
+Outward rolls: 1.24%
+Same hand:     33.30%
+Same finger:   2.86%
+Row change:    16.07%
+Home jump:     2.71%
+Ring jump:     1.46%
+To center:     2.49%
+
+--mtgap beakpq bias 0
+
+Hands: 50% 49%
+Fingers: 2.0% 12% 15% 21% 0.00% 0.00% 20% 20% 9.0% 1.0%
+
+ X  L  N  D  V   <  U  O  P  Q
+ B  R  S  T  M   /  A  E  H  K
+ W  F  C  G  J   ?  I  >  Y  Z
+
+ x  l  n  d  v   :  u  o  p  q
+ b  r  s  t  m   ,  a  e  h  k
+ w  f  c  g  j   ;  i  .  y  z
+
+Fitness:       12162082
+Distance:      8755665
+Finger work:   56932
+Inward rolls:  7.83%
+Outward rolls: 0.75%
+Same hand:     29.97%
+Same finger:   2.83%
+Row change:    14.48%
+Home jump:     3.60%
+Ring jump:     0.63%
+To center:     1.50%
+
+----mtgap beakpqfull bias 0
+
+Hands: 49% 50%
+Fingers: 4.0% 12% 15% 19% 0.00% 0.00% 19% 20% 9.0% 3.0%
+
+ Q  [  ]  *  +  #   ^  %  {  }  |  J  `
+    X  L  N  D  V   !  U  O  P  @  $  &  ~
+    B  R  S  T  C   :  A  E  H  K  ?
+    F  W  M  G  <   >  I  =  Y  Z
+
+ q  1  2  3  4  5   6  7  8  9  0  j  /
+    x  l  n  d  v   ;  u  o  p  _  (  )  \
+    b  r  s  t  c   ,  a  e  h  k  '
+    f  w  m  g  "   -  i  .  y  z
+
+Fitness:       15628234
+Distance:      10728240
+Finger work:   11544
+Inward rolls:  7.54%
+Outward rolls: 0.76%
+Same hand:     30.63%
+Same finger:   2.99%
+Row change:    14.56%
+Home jump:     3.25%
+Ring jump:     1.17%
+To center:     2.89%
+To outside:    0.87%
+
+
+--mtgap beakpqfull bias -10 
+
+Hands: 47% 52%
+Fingers: 4.0% 11% 15% 17% 0.00% 0.00% 20% 19% 10% 4.0%
+
+ Z  [  ]  <  >  +   ^  %  {  }  |  &  `
+    X  C  N  D  V   *  U  O  L  J  $  @  ~
+    Y  R  S  T  P   ;  A  E  H  G  K
+    F  W  M  B  Q   ?  I  =  !  #
+
+ z  1  2  3  4  5   6  7  8  9  0  :  /
+    x  c  n  d  v   -  u  o  l  j  (  )  \
+    y  r  s  t  p   ,  a  e  h  g  k
+    f  w  m  b  q   _  i  "  .  '
+
+Fitness:       19215245
+Distance:      14308300
+Finger work:   0
+Inward rolls:  7.85%
+Outward rolls: 1.32%
+Same hand:     33.47%
+Same finger:   2.60%
+Row change:    15.74%
+Home jump:     2.52%
+Ring jump:     1.96%
+To center:     2.67%
+To outside:    1.44%
