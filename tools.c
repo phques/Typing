@@ -356,21 +356,14 @@ void initKeyboardData()
 	} else if (fullKeyboard == K_BEAKPQFULL) {
 
 		// angleZ / curl is the only change
-		//static int fingerCopy[KSIZE_MAX] = {
-		//	PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-		//	PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-		//	PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-		//	PINKY, RING, MIDDLE,   INDEX, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-		//	THUMB, THUMB, THUMB,   THUMB, THUMB, THUMB, THUMB, THUMB, THUMB,  THUMB, THUMB, THUMB, THUMB, THUMB,
-		//};
-
 		static int fingerCopy[KSIZE_MAX] = {
-			PINKY, PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-			PINKY, PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-			PINKY, PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-			PINKY, PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
-			THUMB, THUMB, THUMB, THUMB,  THUMB, THUMB, THUMB, THUMB, THUMB,  THUMB, THUMB, THUMB, THUMB, THUMB,
+			PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
+			PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
+			PINKY, PINKY,  RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
+			PINKY, RING, MIDDLE,   INDEX, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING,  PINKY, PINKY, PINKY, PINKY,
+			THUMB, THUMB, THUMB,   THUMB, THUMB, THUMB, THUMB, THUMB, THUMB,  THUMB, THUMB, THUMB, THUMB, THUMB,
 		};
+
 		copyArray(finger, fingerCopy, ksize);
 
 		static int columnCopy[KSIZE_MAX] = {
@@ -936,22 +929,26 @@ void setksize(int type)
 		ksize = 30;
 		trueksize = 30;
 		kbdFilename = "layoutStore.txt";
+		keyboardForm = K_NO;
 		break;
 	case K_STANDARD:
 	case K_BEAKPQFULL:
 		ksize = 56;
 		trueksize = 47;
 		kbdFilename = "fullLayoutStore.txt";
+		keyboardForm = K_STANDARD;
 		break;
 	case K_KINESIS:
 		ksize = 72;
 		trueksize = 50;
 		kbdFilename = "kinesisLayoutStore.txt";
+		keyboardForm = K_KINESIS;
 		break;
 	case K_IPHONE:
 		ksize = 30;
 		trueksize = 26;
 		kbdFilename = NULL;
+		keyboardForm = K_IPHONE;
 		break;
 	}
 

@@ -405,6 +405,6 @@ inline int calcToCenter(int loc0, int loc1)
  */
 inline int calcToOutside(int loc0, int loc1)
 {
-	if (fullKeyboard != K_NO && (isOutside[loc0] ^ isOutside[loc1])) return toOutside;
+	if (keyboardForm != K_NO && (isOutside[loc0] ^ isOutside[loc1])) return toOutside;
 	else return 0;
 }

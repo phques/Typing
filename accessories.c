@@ -701,7 +701,7 @@ int runTimingTests()
  */
 int testFitness()
 {
-	if (fullKeyboard == K_NO) {
+	if (keyboardForm == K_NO) {
 		printf("\nTesting calcInRoll():\n");
 		testResult(calcInRoll(0, 0), 0);
 		testResult(calcInRoll(10, 11), inRoll);
@@ -756,7 +756,7 @@ int testFitness()
 		testResult(calcToCenter(25, 9), toCenter);
 		testResult(calcToCenter(25, 15), 0);
 	
-	} else if (fullKeyboard == K_STANDARD) {
+	} else if (keyboardForm == K_STANDARD) {
 		printf("\nTesting calcHomeJump():\n");
 		testResult(calcHomeJump(8, 8), 0);
 		testResult(calcHomeJump(14, 0), 0);

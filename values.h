@@ -29,6 +29,7 @@
 #define K_STANDARD 1
 #define K_KINESIS 2
 #define K_IPHONE 3
+
 #define K_CURLAZ30 4
 #define K_BEAK 5
 #define K_BEAKPQ 6
@@ -39,6 +40,7 @@
 
 /* Set fullKeyboard in initValues(). */
 int fullKeyboard;
+int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE */
 
 int ksize, trueksize;
 char *kbdFilename;

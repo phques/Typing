@@ -137,7 +137,7 @@ int initKeyboard(Keyboard *k)
 		}		
 	}
 	
-	if (keepConsonantsRight && (fullKeyboard == K_STANDARD || fullKeyboard == K_BEAKPQFULL)) {
+	if (keepConsonantsRight && keyboardForm == K_STANDARD) {
 		const char *consonants = "bcdfghjklmnpqrstvwxyz";
 		/* TODO: Swap both shifted and unshifted */
 		static int halfIndices[] = {
@@ -377,7 +377,7 @@ int printLayoutRaw(char layout[])
 	for (i = 0; i < ksize; ++i) {
 		charToPrintable(str, layout[i], TRUE);
 		
-		if (fullKeyboard == K_KINESIS) {
+		if (keyboardForm == K_KINESIS) {
 			if (printable[i]) {
 				if (i % 12 == 11) printf("%s\n", str);
 				else if (i % 12 == 5) printf("%s  ", str);
@@ -387,7 +387,7 @@ int printLayoutRaw(char layout[])
 				else if (i % 12 == 5) printf("    ");
 				else printf("   ");
 			}
-		} else if (fullKeyboard == K_STANDARD || fullKeyboard == K_BEAKPQFULL) {
+		} else if (keyboardForm == K_STANDARD) {
 			if (printable[i] == FALSE) {
 				if (i % 14 == 13) printf("   \n");
 				else printf("   ");
@@ -503,12 +503,12 @@ int isLegalSwap(Keyboard *k, int i, int j)
 	i %= ksize;
 	j %= ksize;
 	
-	if (fullKeyboard == K_NO) {
+	if (keyboardForm == K_NO) {
 		return legalBox[i] == legalBox[j];
-	} else if (fullKeyboard == K_STANDARD || fullKeyboard == K_BEAKPQFULL) {
+	} else if (keyboardForm == K_STANDARD) {
 		if (keepConsonantsRight) return bigLegalBoxConsonants[i] == bigLegalBoxConsonants[j];
 		else return bigLegalBox[i] == bigLegalBox[j];
-	} else if (fullKeyboard == K_KINESIS) {
+	} else if (keyboardForm == K_KINESIS) {
 		return kinesisLegalBox[i] == kinesisLegalBox[j];
 	}
 
