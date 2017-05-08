@@ -100,6 +100,9 @@ int getCommands()
 			} else if (streq(cmd + str_len, "curlaz30")) {
 				setksize(K_CURLAZ30);
 				printf("Keyboard set to curlaz30. All user-defined values have been reset.\n\n");
+			} else if (streq(cmd + str_len, "curlaz33")) {
+				setksize(K_CURLAZ33);
+				printf("Keyboard set to curlaz33. All user-defined values have been reset.\n\n");
 			} else if (streq(cmd + str_len, "beak")) {
 				setksize(K_BEAK);
 				printf("Keyboard set to beak. All user-defined values have been reset.\n\n");
@@ -115,6 +118,7 @@ int getCommands()
 				puts(" \"setksize standard\" (use standard full keyboard)");
 				puts(" \"setksize kinesis\" (use Kinesis full keyboard)");
 				puts(" \"setksize curlaz30\" (curl angleZ, 30 keys)");
+				puts(" \"setksize curlaz33\" (curl angleZ, 33 keys)");
 				puts(" \"setksize beak\" (BEAK, 30 keys)");
 				puts(" \"setksize beakpq\" (BEAK PQ, 30 keys)");
 				puts(" \"setksize beakpqfull\" (BEAK PQ, full keyboard)");

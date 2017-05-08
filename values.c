@@ -31,12 +31,22 @@ int initValues()
 		
 		// These costs are optimized for a full standard layout. Any cost that 
 		// is 999 is not supposed to contain any character.
+#if 0
 		static int64_t costsCopy[KSIZE_MAX] = {
 			110, 100,  90,  75, 100, 120, 160, 100,  75,  90, 100, 110, 120, 999,
 			999,  40,  40,  30,  40,  70,  80,  40,  30,  40,  40,  60,  90, 140, 
 			999,   0,   0,   0,   0,  30,  30,   0,   0,   0,   0,  50, 999, 999, 
 			999,  70,  70,  70,  50,  95,  60,  40,  60,  70,  70, 999, 999, 999, 
 		};
+#else
+		// full version with costs from 30 mains chars in anglez / curl
+		static int64_t costsCopy[KSIZE_MAX] = {
+			110, 100,  90,  75, 100, 120, 160, 100,  75,  90, 100, 110, 120, 999,
+			999,  70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,  90, 140,
+			999,  16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  60, 999, 999,
+			999,  50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999, 999, 999,
+		};
+#endif
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 			
@@ -90,12 +100,37 @@ int initValues()
 #else   // angleZ reduced curl
 		static int64_t costsCopy[KSIZE_MAX] = {
 			//  83,  35,  33,  40,  80,  93,  40,  33,  35,  83,
-			70,  35,  33,  40,  80,  93,  40,  33,  35,  70,
-			16,   6,   0,   0,  50,  50,   0,   0,   6,  16,
-			50,  60,  30,  55,  93,  55,  30,  60,  50,  75,
+			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,
+			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,
+			50,  60,  30,  58,  93,  55,  30,  60,  50,  75,
 			//  60,  55,  23,  50,  93,  50,  23,  55,  60,  83,
 		};
 #endif
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
+	} else	if (fullKeyboard == K_CURLAZ33) {
+		// K_CURLAZ30 + 3 chars at right of right hand ('[])
+		// angleZ reduced curl
+		static int64_t costsCopy[KSIZE_MAX] = {
+			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,  90,
+			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  60, 999,
+			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999, 999,
+		};
+		
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+		
+	} else	if (fullKeyboard == K_BEAK) {
+		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
+			uses idea of 3x3 'home block' vs home row
+		*/
+		static int64_t costsCopy[KSIZE_MAX] = {
+			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
+			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
+			90, 20, 30, 10, 50, 50, 10, 30, 20, 90 
+		};
+
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 

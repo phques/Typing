@@ -95,6 +95,12 @@ int kinesisLegalBox2[] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 };
 
+int main33LegalBox[] = {
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
 void buildShuffledIndices(int indices[], int length)
 {
 	indices[0] = 0;
@@ -376,33 +382,51 @@ int printLayoutRaw(char layout[])
 	
 	for (i = 0; i < ksize; ++i) {
 		charToPrintable(str, layout[i], TRUE);
-		
+
 		if (keyboardForm == K_KINESIS) {
 			if (printable[i]) {
 				if (i % 12 == 11) printf("%s\n", str);
 				else if (i % 12 == 5) printf("%s  ", str);
 				else printf("%s ", str);
-			} else {
+			}
+			else {
 				if (i % 12 == 11) printf(" \n");
 				else if (i % 12 == 5) printf("    ");
 				else printf("   ");
 			}
-		} else if (keyboardForm == K_STANDARD) {
+		}
+		else if (keyboardForm == K_STANDARD) {
 			if (printable[i] == FALSE) {
 				if (i % 14 == 13) printf("   \n");
 				else printf("   ");
-			} else if (i % 14 == 13) printf("%s\n", str);
+			}
+			else if (i % 14 == 13) printf("%s\n", str);
 			else if (i % 14 == 5) printf("%s  ", str);
 			else printf("%s ", str);
-		} else {
+		}
+		else if (keyboardForm == K_CURLAZ33) {
+			if (printable[i]) {
+				if (i % 12 == 11) printf("%s\n", str);
+				else if (i % 12 == 5) printf("%s  ", str);
+				else printf("%s ", str);
+			}
+			else {
+				if (i % 12 == 11) printf(" \n");
+				else if (i % 12 == 5) printf("    ");
+				else printf("   ");
+			}
+		}
+		else {
 			if (printable[i] == FALSE) {
 				if (i % 10 == 9) printf("  \n");
 				else printf("   ");
-			} else if (i % 10 == 9) printf("%s\n", str);
+			}
+			else if (i % 10 == 9) printf("%s\n", str);
 			else if (i % 10 == 4) printf("%s  ", str);
 			else printf("%s ", str);
 		}
 	}
+
 	printf("\n");
 	return 0;
 }
@@ -510,7 +534,10 @@ int isLegalSwap(Keyboard *k, int i, int j)
 		else return bigLegalBox[i] == bigLegalBox[j];
 	} else if (keyboardForm == K_KINESIS) {
 		return kinesisLegalBox[i] == kinesisLegalBox[j];
+	} else if (keyboardForm == K_CURLAZ33) {
+		return main33LegalBox[i] == main33LegalBox[j];
 	}
+	
 
 	return TRUE;
 }
