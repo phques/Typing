@@ -407,7 +407,7 @@ int printLayoutRaw(char layout[])
 		else if (keyboardForm == K_CURLAZ33) {
 			if (printable[i]) {
 				if (i % 12 == 11) printf("%s\n", str);
-				else if (i % 12 == 5) printf("%s  ", str);
+				else if (i % 12 == 4) printf("%s  ", str);
 				else printf("%s ", str);
 			}
 			else {
