@@ -32,21 +32,3 @@ $ 47251     _ 47251     > 30079
 ` 2270      @ 2270      ^ 36
 ~ 2220      ` 2220      ` 22
 
-'use', w. 33chars kbd
-
-Qwerty
-qwertyuiop[]asdfghjkl;'zxcvbnm,./
-QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?
-
-Std
-qwertyuiop_*asdfghjkl:"zxcvbnm,./
-QWERTYUIOP-=ASDFGHJKL;'ZXCVBNM()!
-
-Prog
-qwertyuiop./asdfghjkl()zxcvbnm=":
-QWERTYUIOP*;ASDFGHJKL{}ZXCVBNM,<-
-
-Src2
-qwertyuiop./asdfghjkl()zxcvbnm=":
-QWERTYUIOP*;ASDFGHJKL{}ZXCVBNM_-,
-

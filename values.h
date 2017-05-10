@@ -35,13 +35,14 @@
 #define K_BEAKPQ 6
 #define K_BEAKPQFULL 7
 #define K_CURLAZ33 8
+#define K_CURLAZ32 9
 
 #define TRUE 1
 #define FALSE 0
 
 /* Set fullKeyboard in initValues(). */
 int fullKeyboard;
-int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 */
+int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 K_CURLAZ32 */
 
 int ksize, trueksize;
 char *kbdFilename;

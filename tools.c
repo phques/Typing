@@ -62,6 +62,7 @@ int initData()
 	else if (fullKeyboard == K_STANDARD) strcpy(keysToInclude, DEFAULT_KEYBOARD_STANDARD);
 	else if (fullKeyboard == K_KINESIS) strcpy(keysToInclude, DEFAULT_KEYBOARD_KINESIS);
 	else if (fullKeyboard == K_CURLAZ30) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
+	else if (fullKeyboard == K_CURLAZ32) strcpy(keysToInclude, DEFAULT_KEYBOARD_32);
 	else if (fullKeyboard == K_CURLAZ33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
 	else if (fullKeyboard == K_BEAK) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQ) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
@@ -351,6 +352,59 @@ void initKeyboardData()
 			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+		};
+		copyArray(printable, printableCopy, ksize);
+
+	} else if (fullKeyboard == K_CURLAZ32) { 
+		static int fingerCopy[KSIZE_MAX] = {
+			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, PINKY,
+			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, PINKY,
+			RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, PINKY,
+		};
+		copyArray(finger, fingerCopy, ksize);
+
+		static int columnCopy[KSIZE_MAX] = {
+			 0, 1, 2, 3, 4, 4, 3, 2, 1, 0, -1,
+			 0, 1, 2, 3, 4, 4, 3, 2, 1, 0, -1,
+			 0, 1, 2, 3, 4, 4, 3, 2, 1, 0, -1,
+		};
+		copyArray(column, columnCopy, ksize);
+
+		static int rowCopy[] = {
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		};
+		copyArray(row, rowCopy, ksize);
+
+		homeRow = 1;
+
+		static int handCopy[KSIZE_MAX] = {
+			LEFT, LEFT, LEFT, LEFT, LEFT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT,
+			LEFT, LEFT, LEFT, LEFT, LEFT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT,
+			LEFT, LEFT, LEFT, LEFT, LEFT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT,
+		};
+		copyArray(hand, handCopy, ksize);
+
+		static int isCenterCopy[KSIZE_MAX] = {
+			FALSE, FALSE, FALSE,  FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE,
+			FALSE, FALSE, FALSE,  FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE,
+			FALSE, FALSE, FALSE,  FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE,
+		};
+		copyArray(isCenter, isCenterCopy, ksize);
+
+		static int isOutsideCopy[KSIZE_MAX] = {
+			FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
+			FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
+			FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
+		};
+
+		copyArray(isOutside, isOutsideCopy, ksize);
+
+		static int printableCopy[KSIZE_MAX] = {
+			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,	TRUE, 
+			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,	TRUE, 
+			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,	FALSE,
 		};
 		copyArray(printable, printableCopy, ksize);
 
@@ -1003,6 +1057,12 @@ void setksize(int type)
 		trueksize = 26;
 		kbdFilename = NULL;
 		keyboardForm = K_IPHONE;
+		break;
+	case K_CURLAZ32:
+		ksize = 33;
+		trueksize = 32;
+		kbdFilename = NULL;
+		keyboardForm = K_CURLAZ32;
 		break;
 	case K_CURLAZ33:
 		ksize = 36;

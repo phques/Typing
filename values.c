@@ -109,6 +109,18 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 
+	} else	if (fullKeyboard == K_CURLAZ32) {
+		// K_CURLAZ30 + 3 chars at right of right hand ('[])
+		// angleZ reduced curl
+		static int64_t costsCopy[KSIZE_MAX] = {
+			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,
+			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  60,
+			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999,
+		};
+		
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+		
 	} else	if (fullKeyboard == K_CURLAZ33) {
 		// K_CURLAZ30 + 3 chars at right of right hand ('[])
 		// angleZ reduced curl

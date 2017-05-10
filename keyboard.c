@@ -95,6 +95,12 @@ int kinesisLegalBox2[] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 };
 
+int main32LegalBox[] = {
+	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
 int main33LegalBox[] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -404,6 +410,18 @@ int printLayoutRaw(char layout[])
 			else if (i % 14 == 5) printf("%s  ", str);
 			else printf("%s ", str);
 		}
+		else if (keyboardForm == K_CURLAZ32) {
+			if (printable[i]) {
+				if (i % 11 == 10) printf("%s\n", str);
+				else if (i % 11 == 4) printf("%s  ", str);
+				else printf("%s ", str);
+			}
+			else {
+				if (i % 11 == 10) printf(" \n");
+				else if (i % 11 == 4) printf("    ");
+				else printf("   ");
+			}
+		}
 		else if (keyboardForm == K_CURLAZ33) {
 			if (printable[i]) {
 				if (i % 12 == 11) printf("%s\n", str);
@@ -412,7 +430,7 @@ int printLayoutRaw(char layout[])
 			}
 			else {
 				if (i % 12 == 11) printf(" \n");
-				else if (i % 12 == 5) printf("    ");
+				else if (i % 12 == 4) printf("    ");
 				else printf("   ");
 			}
 		}
@@ -534,6 +552,8 @@ int isLegalSwap(Keyboard *k, int i, int j)
 		else return bigLegalBox[i] == bigLegalBox[j];
 	} else if (keyboardForm == K_KINESIS) {
 		return kinesisLegalBox[i] == kinesisLegalBox[j];
+	} else if (keyboardForm == K_CURLAZ32) {
+		return main32LegalBox[i] == main32LegalBox[j];
 	} else if (keyboardForm == K_CURLAZ33) {
 		return main33LegalBox[i] == main33LegalBox[j];
 	}
