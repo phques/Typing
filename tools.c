@@ -64,6 +64,7 @@ int initData()
 	else if (fullKeyboard == K_CURLAZ30) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_CURLAZ32) strcpy(keysToInclude, DEFAULT_KEYBOARD_32);
 	else if (fullKeyboard == K_CURLAZ33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
+	else if (fullKeyboard == K_CURLAZ14) strcpy(keysToInclude, DEFAULT_KEYBOARD_14);
 	else if (fullKeyboard == K_BEAK) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQ) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQFULL) strcpy(keysToInclude, DEFAULT_KEYBOARD_STANDARD);
@@ -306,7 +307,8 @@ void initKeyboardData()
 		};
 		copyArray(printable, printableCopy, ksize);
 
-	} else if (fullKeyboard == K_CURLAZ30 || fullKeyboard == K_BEAKPQ) { // use curl/anglez for beakPQ
+	} else if (fullKeyboard == K_CURLAZ30 || fullKeyboard == K_BEAKPQ || fullKeyboard == K_CURLAZ14) {
+		// use curl/anglez for beakPQ,  fullKeyboard == K_CURLAZ14
 		/* the only change vs K_NO is in fingerCopy */
 		static int fingerCopy[KSIZE_MAX] = {
 			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY,
@@ -348,12 +350,21 @@ void initKeyboardData()
 		for (i = 0; i < KSIZE_MAX; ++i)
 			isOutside[i] = FALSE;
 
-		static int printableCopy[KSIZE_MAX] = {
-			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-			TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-		};
-		copyArray(printable, printableCopy, ksize);
+		if (fullKeyboard == K_CURLAZ14) {
+			static int printableCopy[KSIZE_MAX] = {
+				FALSE, TRUE,  TRUE, FALSE, FALSE, FALSE, FALSE, TRUE,  TRUE,  FALSE,
+				TRUE,  TRUE,  TRUE, TRUE,  FALSE, FALSE, TRUE,  TRUE,  TRUE,  TRUE,
+				FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE,  FALSE, FALSE, FALSE,
+			};
+			copyArray(printable, printableCopy, ksize);
+		} else {
+			static int printableCopy[KSIZE_MAX] = {
+				TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+				TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+				TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+			};
+			copyArray(printable, printableCopy, ksize);
+		}
 
 	} else if (fullKeyboard == K_CURLAZ32) { 
 		static int fingerCopy[KSIZE_MAX] = {
@@ -849,7 +860,7 @@ void initVariables()
     ADD_VAR(keepQWERTY, "(bool) try to keep keys in their QWERTY positions");
     ADD_VAR(keepNumbers, "(bool) keep numbers in place");
     ADD_VAR(keepBrackets, "(bool) keep brackets symmetrical");
-    ADD_VAR(keepShiftPairs, "(bool) shifted/unshifted pairs of non-alphabetic characters stay together");
+    ADD_VAR(keepShiftPairs, "0/1 shifted/unshifted pairs of non-alphabetic characters stay together. 2 anything goes");
     ADD_VAR(keepTab, "(bool) keep Tab in place");
     ADD_VAR(keepNumbersShifted, "(bool) numbers do not move between shifted and unshifted");
     ADD_VAR(numThreads, "number of threads to create\n");
@@ -1022,6 +1033,9 @@ inline char getMatchingBracket(char c)
  */
 inline int keepShiftPair(char c)
 {
+	if (keepShiftPairs == 2)
+		return isspace(c) || c == '\b';
+
 	return keepShiftPairs || isalpha(c) || isspace(c) || c == '\b';
 }
 
@@ -1069,6 +1083,12 @@ void setksize(int type)
 		trueksize = 33;
 		kbdFilename = NULL;
 		keyboardForm = K_CURLAZ33;
+		break;
+	case K_CURLAZ14:
+		ksize = 30;
+		trueksize = 28;
+		kbdFilename = NULL;
+		keyboardForm = K_NO;
 		break;
 	}
 

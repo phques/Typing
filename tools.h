@@ -68,6 +68,7 @@ struct Digraph digraphs[DI_LEN_MAX];
 #define DEFAULT_KEYBOARD_KINESIS "1234567890-\tqwertyuiop=asdfghjkl;'zxcvbnm,./`\\[]\n !@#$%^&*()_\tQWERTYUIOP+ASDFGHJKL:\"ZXCVBNM<>?~|{}\n "
 #define DEFAULT_KEYBOARD_32 "qwertyuiop[asdfghjkl;'zxcvbnm,./QWERTYUIOP]ASDFGHJKL:\"ZXCVBNM<>?"
 #define DEFAULT_KEYBOARD_33 "qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
+#define DEFAULT_KEYBOARD_14 "qwertyuiopasdfghjklzxcvbnm.,"
 
 #define CHECK_FILE_FOR_NULL(file, filename) \
 	if ((file) == NULL) { \

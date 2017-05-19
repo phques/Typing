@@ -36,6 +36,7 @@
 #define K_BEAKPQFULL 7
 #define K_CURLAZ33 8
 #define K_CURLAZ32 9
+#define K_CURLAZ14 10
 
 #define TRUE 1
 #define FALSE 0
@@ -92,6 +93,7 @@ int detailedOutput, numThreads;
 
 /* 0 for false, 1 for true. 
  * keepNumbers: 2 if numbers can move about but must stay in number row.
+ * keepShifted: 2 everything goes (except space & '\b')
  * 
  * Some of these variables require that their condition be true, and others 
  * merely provide a penalty for not doing so.

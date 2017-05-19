@@ -110,14 +110,23 @@ int initValues()
 			distanceCosts[i] = costsCopy[i];
 
 	} else	if (fullKeyboard == K_CURLAZ32) {
-		// K_CURLAZ30 + 3 chars at right of right hand ('[])
+		// K_CURLAZ30 + 2 chars at right of right hand ('[)
+#if 0
 		// angleZ reduced curl
 		static int64_t costsCopy[KSIZE_MAX] = {
 			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,
 			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  60,
 			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999,
 		};
-		
+#elif 1
+		// + reduced costs on right pinky outside home
+		static int64_t costsCopy[KSIZE_MAX] = {
+			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,
+			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  45,
+			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999,
+		}; 
+#endif
+
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 		
@@ -133,6 +142,18 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 		
+	} else if (fullKeyboard == K_CURLAZ14) {
+
+		// angleZ reduced curl, from curlaz30
+		static int64_t costsCopy[KSIZE_MAX] = {
+			999,  35,  33, 999, 999, 999, 999,  33,  35, 999,
+			16,    6,   0,   0, 999, 999,   0,   0,   6,  16,
+			999, 999,  30, 999, 999, 999,  30, 999, 999, 999,
+		};
+
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 	} else	if (fullKeyboard == K_BEAK) {
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row

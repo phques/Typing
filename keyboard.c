@@ -528,8 +528,8 @@ int isLegalSwap(Keyboard *k, int i, int j)
 	if (!printable[i % ksize] || !printable[j % ksize])
 		return FALSE;
 	
-	if ((i >= ksize && (keepShiftPairs || keepShiftPair(k->shiftedLayout[i % ksize]))) || 
-			(j >= ksize && (keepShiftPairs || keepShiftPair(k->shiftedLayout[j % ksize])))) {
+	if ((i >= ksize && (keepShiftPairs == 1 || keepShiftPair(k->shiftedLayout[i % ksize]))) ||
+			(j >= ksize && (keepShiftPairs == 1 || keepShiftPair(k->shiftedLayout[j % ksize])))) {
 		return FALSE;
 	}
 	
