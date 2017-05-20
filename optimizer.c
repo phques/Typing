@@ -12,6 +12,7 @@
 int main()
 {
     /* Initialize the typing data and the keyboard layout settings. */
+	strcpy(keysMask, ""); /* initialy empty*/
     setksize(K_NO);
     getCommands();
     

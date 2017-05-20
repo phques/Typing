@@ -35,6 +35,7 @@ int getCommands()
 			printf("set <variable> <value>: Set the specified variable to the given value.\n");
 			printf("sethandbias <bias>: adds cost to one hand. < 0 for left hand, > 0 for right hand\n");
 			printf("setksize <K_setting>: Set the keyboard type. Type \"setksize help\" for more information.\n");
+			printf("setmask 10110... (ksize digits) Sets kbd keys mask, sets keys to use.\n");
 			printf("test fitness: Test that the fitness functions are working properly.\n");
 			printf("use <keys>: Use <keys> in the keyboard layout instead of the default.\n");
 			printf("worst <filename>: Find the worst digraphs for the keyboard layouts in <filename>.\n");
@@ -106,9 +107,6 @@ int getCommands()
 			} else if (streq(cmd + str_len, "curlaz32")) {
 				setksize(K_CURLAZ32);
 				printf("Keyboard set to curlaz32. All user-defined values have been reset.\n\n");
-			} else if (streq(cmd + str_len, "curlaz14")) {
-				setksize(K_CURLAZ14);
-				printf("Keyboard set to curlaz14. All user-defined values have been reset.\n\n");
 			} else if (streq(cmd + str_len, "beak")) {
 				setksize(K_BEAK);
 				printf("Keyboard set to beak. All user-defined values have been reset.\n\n");
@@ -131,6 +129,10 @@ int getCommands()
 				puts(" \"setksize beakpq\" (BEAK PQ, 30 keys)");
 				puts(" \"setksize beakpqfull\" (BEAK PQ, full keyboard)");
 			}
+			
+		} else if (streqn(cmd, "setmask ", 8)) {
+			strcpy(keysMask, cmd + 8);
+			setksize(fullKeyboard);
 
 		} else if (streq(cmd, "test fitness")) {
 			testFitness();
@@ -294,7 +296,7 @@ int gameComputer(Keyboard *k, char difficulty)
 	char bestc = '\0';
 	int64_t score, bestScore = FITNESS_MAX;
 	
-	Keyboard k2;
+	Keyboard k2;  
 	
 	int indices[2 * trueksize];
 	buildShuffledIndices(indices, 2 * trueksize);

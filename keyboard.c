@@ -103,7 +103,7 @@ int main32LegalBox[] = {
 
 int main33LegalBox[] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		  
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
 
@@ -181,6 +181,7 @@ int setLayout(Keyboard *k, char *layout)
 {
 	int i;
 	char *savedLayout = layout;
+
 	for (i = 0; i < ksize; ++i) {
 		if (printable[i] && *layout == '\0') {
 			fprintf(stderr, "Error: in setLayout(), layout %s does not have enough characters (%d expected, %ld found).\n", 
@@ -528,11 +529,21 @@ int isLegalSwap(Keyboard *k, int i, int j)
 	if (!printable[i % ksize] || !printable[j % ksize])
 		return FALSE;
 	
-	if ((i >= ksize && (keepShiftPairs == 1 || keepShiftPair(k->shiftedLayout[i % ksize]))) ||
-			(j >= ksize && (keepShiftPairs == 1 || keepShiftPair(k->shiftedLayout[j % ksize])))) {
-		return FALSE;
+	//##pq
+	//if ((i >= ksize && (/*keepShiftPairs == 1 ||*/ keepShiftPair(k->shiftedLayout[i % ksize]))) ||
+	//		(j >= ksize && (/*keepShiftPairs == 1 ||*/ keepShiftPair(k->shiftedLayout[j % ksize])))) {
+	//	return FALSE;
+	//}
+	/* if both locs are shifted or both unshifted, ok to swap, we will swap pairs if needed. */
+	int isShiftedI = (i >= ksize);
+	int isShiftedJ = (j >= ksize);
+	if (isShiftedI != isShiftedJ) {
+		/* don't swap between shifted/unshifted if need to keep shifted pair for one of the keys  */
+		if (keepShiftPair(k->shiftedLayout[i % ksize]) || keepShiftPair(k->layout[i % ksize]) ||
+			keepShiftPair(k->shiftedLayout[j % ksize]) || keepShiftPair(k->layout[j % ksize]))
+			return FALSE;
 	}
-	
+
 	if (keepNumbers == 1 && (isdigit(charAt(k, i)) || isdigit(charAt(k, j)))) {
 		return FALSE;
 	} else if (keepNumbers == 2 && (isdigit(charAt(k, i)) ^ isdigit(charAt(k, j)))) {

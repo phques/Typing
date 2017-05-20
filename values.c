@@ -8,10 +8,41 @@
 
 #include "values.h"
 
+/* returns True if keysMask is valid / should be used.
+ Also sets trueksize according to mask */
+int checkKeysMask()
+{
+	int useMask = FALSE;
+
+	if (strlen(keysMask) > 0) {
+		if (strlen(keysMask) != ksize) {
+			printf("Wrong nbr of keys in mask (%d), need %d\n", strlen(keysMask), ksize);
+			useMask = FALSE;
+		}
+		else {
+			int i, newsize =0;
+			printf("Using keys mask: %s\n", keysMask);
+			useMask = TRUE;
+
+			/* calc trueksize */
+			for (i = 0; i < ksize; i++)
+				newsize += (keysMask[i] == '1');
+
+			if (newsize != trueksize) {
+				trueksize = newsize;
+				printf("trueksize adjusted to %d from mask\n", newsize);
+			}
+		}
+	}
+
+	return useMask;
+}
+
 int initValues()
 {
 	int i;
-	
+	int useMask = checkKeysMask();
+
 	initCosts();
 	
 	if (fullKeyboard == K_NO) {
@@ -31,7 +62,7 @@ int initValues()
 		
 		// These costs are optimized for a full standard layout. Any cost that 
 		// is 999 is not supposed to contain any character.
-#if 0
+#if 1
 		static int64_t costsCopy[KSIZE_MAX] = {
 			110, 100,  90,  75, 100, 120, 160, 100,  75,  90, 100, 110, 120, 999,
 			999,  40,  40,  30,  40,  70,  80,  40,  30,  40,  40,  60,  90, 140, 
@@ -106,8 +137,8 @@ int initValues()
 			//  60,  55,  23,  50,  93,  50,  23,  55,  60,  83,
 		};
 #endif
-		for (i = 0; i < ksize; ++i)
-			distanceCosts[i] = costsCopy[i];
+		for (i = 0; i < ksize; ++i) 
+			distanceCosts[i] = (!useMask || keysMask[i] == '1') ? costsCopy[i] : 999;
 
 	} else	if (fullKeyboard == K_CURLAZ32) {
 		// K_CURLAZ30 + 2 chars at right of right hand ('[)
@@ -142,18 +173,6 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 		
-	} else if (fullKeyboard == K_CURLAZ14) {
-
-		// angleZ reduced curl, from curlaz30
-		static int64_t costsCopy[KSIZE_MAX] = {
-			999,  35,  33, 999, 999, 999, 999,  33,  35, 999,
-			16,    6,   0,   0, 999, 999,   0,   0,   6,  16,
-			999, 999,  30, 999, 999, 999,  30, 999, 999, 999,
-		};
-
-		for (i = 0; i < ksize; ++i)
-			distanceCosts[i] = costsCopy[i];
-
 	} else	if (fullKeyboard == K_BEAK) {
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row
@@ -252,7 +271,7 @@ void initCosts()
 	keepQWERTY = FALSE;
 	keepNumbers = 1;
 	keepBrackets = TRUE;
-	keepShiftPairs = FALSE;
+	keepShiftPairs = 2;
 	keepTab = TRUE;
 	keepConsonantsRight = FALSE;
 	keepNumbersShifted = FALSE;

@@ -36,7 +36,6 @@
 #define K_BEAKPQFULL 7
 #define K_CURLAZ33 8
 #define K_CURLAZ32 9
-#define K_CURLAZ14 10
 
 #define TRUE 1
 #define FALSE 0
@@ -89,11 +88,14 @@ int64_t shortcutCosts[KSIZE_MAX];
 double fingerPercentMaxes[FINGER_COUNT];
 int64_t fingerWorkCosts[FINGER_COUNT];
 
+char keysMask[200]; // "1100.." use/not use key. Default is empty
+
+
 int detailedOutput, numThreads;
 
 /* 0 for false, 1 for true. 
  * keepNumbers: 2 if numbers can move about but must stay in number row.
- * keepShifted: 2 everything goes (except space & '\b')
+ * keepShiftPairs: 0-3 0=none, 1=letters,whitespace,backspace 2=whitespace,backspace 3=all/always
  * 
  * Some of these variables require that their condition be true, and others 
  * merely provide a penalty for not doing so.
@@ -114,6 +116,7 @@ int distance, inRoll, outRoll, sameHand, sameFingerP, sameFingerR, sameFingerM,
 int initValues();
 void initCosts();
 void setksize(int type);
+int checkKeysMask();
 
 /* Defined in fitness.c */
 int preCalculateFitness();

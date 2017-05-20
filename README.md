@@ -3,7 +3,13 @@ Changes to forked, PQ
 2017-04-30 Added "curlaz30" kbd  
 2017-04-30 Added "beak" kbd using weights from http://shenafu.com/smf/index.php?topic=89.msg785#msg785  
 2017-04-30 Added "beakpq" kbd, adjusted weights (higher cost top row index, left hand bottom anglez / curl)  
-
+2017-05-20 
+ + Added setmask "110011.." command, to select keys to use in kbd / layout,  
+   This usually also requires "use aabcd..ABCD.." with correct nbr of / wanted chars  
+ + keepShiftedPairs var is now 0-3, from none to all  
+ + Fixed bug where using a kbd with trueksize < ksize : shifted pos less likely to be moved.  
+   Actually in some cases, shifted pos where NEVER moved  
+ + Changed logic about isLegalSwap for keepShiftPairs handling
 
 
 ABOUT
