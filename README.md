@@ -10,7 +10,10 @@ Changes to forked, PQ
  + Fixed bug where using a kbd with trueksize < ksize : shifted pos less likely to be moved.  
    Actually in some cases, shifted pos where NEVER moved  
  + Changed logic about isLegalSwap for keepShiftPairs handling
-
+2017-05-21 
+ + Added variable singleKeySameFinger, which is a percentage of sameFinger cost for 
+   same finger on a single key
+ + Fixed printLayoutRaw for 30keys, was not behaving properly with sparse layouts
 
 ABOUT
 -----
