@@ -325,8 +325,22 @@ inline int calcOutRoll(int loc0, int loc1)
 inline int calcSameFinger(int loc0, int loc1)
 {
 	if (finger[loc0] == finger[loc1]) {
-		if (loc0 == loc1) return 0;
-		else switch (finger[loc0]) {
+		if (loc0 == loc1) {
+			//PQ*/
+			if (singleKeySameFinger == 0) return 0;
+			switch (finger[loc0]) {
+			case PINKY:
+				return (sameFingerP * singleKeySameFinger) / 100;
+			case RING:
+				return (sameFingerR * singleKeySameFinger) / 100;
+			case MIDDLE:
+				return (sameFingerM * singleKeySameFinger) / 100;
+			case INDEX:
+				return (sameFingerI * singleKeySameFinger) / 100;
+			case THUMB:
+				return (sameFingerT * singleKeySameFinger) / 100;
+			}
+		} else switch (finger[loc0]) {
 			case PINKY:
 				return sameFingerP;
 			case RING:

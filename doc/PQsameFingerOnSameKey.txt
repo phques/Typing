@@ -1,0 +1,55 @@
+Test same-finger on same key !!
+t-h on same key
+
+setksize curlaz30
+setmask 000000111000000000000000000000
+set keepShiftPairs 2
+use treh`~
+run
+
+
+Ignores samefineger samekey
+                   ~  h  `
+
+                   e  t  r
+
+Fitness:       13226730 <---
+Distance:      8103205
+Finger work:   2165830
+Inward rolls:  32.17%
+Outward rolls: 7.62%
+Same hand:     100.00%
+Same finger:   0.00%  <----
+Row change:    0.00%
+Home jump:     0.00%
+Ring jump:     0.00%
+To center:     0.00%
+
+mod1, take into account same finger same key (same cost as diff keys though)
+Fitness:       15731650 <---
+Distance:      8103205
+Finger work:   2165830
+Inward rolls:  32.17%
+Outward rolls: 7.62%
+Same hand:     100.00%
+Same finger:   31.80%  <---
+Row change:    0.00%
+Home jump:     0.00%
+Ring jump:     0.00%
+To center:     0.00%
+
+take into account same finger same key (but use 10% of cost)
+same same-finger, but lower Fitness
+?? What percentage should I use ???
+
+Fitness:       13477222 <---
+Distance:      8103205
+Finger work:   2165830
+Inward rolls:  32.17%
+Outward rolls: 7.62%
+Same hand:     100.00%
+Same finger:   31.80% <---
+Row change:    0.00%
+Home jump:     0.00%
+Ring jump:     0.00%
+To center:     0.00%

@@ -436,13 +436,16 @@ int printLayoutRaw(char layout[])
 			}
 		}
 		else {
-			if (printable[i] == FALSE) {
-				if (i % 10 == 9) printf("  \n");
+			if (printable[i]) {
+				if (i % 10 == 9) printf("%s\n", str);
+				else if (i % 10 == 4) printf("%s  ", str);
+				else printf("%s ", str);
+			}
+			else {
+				if (i % 10 == 9) printf(" \n");
+				else if (i % 10 == 4) printf("    ");
 				else printf("   ");
 			}
-			else if (i % 10 == 9) printf("%s\n", str);
-			else if (i % 10 == 4) printf("%s  ", str);
-			else printf("%s ", str);
 		}
 	}
 

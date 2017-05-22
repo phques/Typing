@@ -869,7 +869,8 @@ void initVariables()
     ADD_VAR(sameFingerP, NULL);
     ADD_VAR(sameFingerR, NULL);
     ADD_VAR(sameFingerM, NULL);
-    ADD_VAR(sameFingerI, NULL);
+	ADD_VAR(sameFingerI, NULL);
+	ADD_VAR(singleKeySameFinger, "Percentage (eg 10) of finger cost for same-finger on single key. (Def=0)");
     ADD_VAR(rowChangeUp, NULL);
     ADD_VAR(rowChangeDown, NULL);
     ADD_VAR(handWarp, NULL);

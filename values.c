@@ -336,4 +336,5 @@ void initCosts()
 
 	leftHandCost = 0;
 	rightHandCost = 0;
+	singleKeySameFinger = 0;
 }

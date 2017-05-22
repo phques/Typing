@@ -111,7 +111,7 @@ int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost,
 int distance, inRoll, outRoll, sameHand, sameFingerP, sameFingerR, sameFingerM, 
 	sameFingerI, sameFingerT, rowChangeDown, rowChangeUp, handWarp, handSmooth, 
 	homeJump, homeJumpIndex, doubleJump, ringJump, toCenter, toOutside, 
-	shiftCost, doubleShiftCost, leftHandCost, rightHandCost;
+	shiftCost, doubleShiftCost, leftHandCost, rightHandCost, singleKeySameFinger;
 
 int initValues();
 void initCosts();
