@@ -15,6 +15,11 @@ Changes to forked, PQ
    same finger on a single key
  + Fixed printLayoutRaw for 30keys, was not behaving properly with sparse layouts
 
+2017-05-22 replaced keepShiftPair with keepShiftPairLetters, keepShiftPairSpace, keepShiftPairOther. 
+ 
+Note: using setmask calls setksize, which RESETS all variables, be carefull
+
+ 
 ABOUT
 -----
 

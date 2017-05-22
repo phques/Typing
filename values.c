@@ -41,7 +41,6 @@ int checkKeysMask()
 int initValues()
 {
 	int i;
-	int useMask = checkKeysMask();
 
 	initCosts();
 	
@@ -131,14 +130,15 @@ int initValues()
 #else   // angleZ reduced curl
 		static int64_t costsCopy[KSIZE_MAX] = {
 			//  83,  35,  33,  40,  80,  93,  40,  33,  35,  83,
-			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,
+			70,  35,  33,  45,  80,  85,  40,  33,  35,  70,
 			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,
-			50,  60,  30,  58,  93,  55,  30,  60,  50,  75,
+			50,  60,  30,  58,  95,  55,  30,  60,  50,  75,
 			//  60,  55,  23,  50,  93,  50,  23,  55,  60,  83,
 		};
 #endif
-		for (i = 0; i < ksize; ++i) 
-			distanceCosts[i] = (!useMask || keysMask[i] == '1') ? costsCopy[i] : 999;
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 
 	} else	if (fullKeyboard == K_CURLAZ32) {
 		// K_CURLAZ30 + 2 chars at right of right hand ('[)
@@ -152,9 +152,9 @@ int initValues()
 #elif 1
 		// + reduced costs on right pinky outside home
 		static int64_t costsCopy[KSIZE_MAX] = {
-			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,
+			70,  35,  33,  45,  80,  85,  40,  33,  35,  70,  80,
 			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  45,
-			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999,
+			50,  60,  30,  58,  95,  55,  30,  60,  50,  75, 999,
 		}; 
 #endif
 
@@ -165,9 +165,9 @@ int initValues()
 		// K_CURLAZ30 + 3 chars at right of right hand ('[])
 		// angleZ reduced curl
 		static int64_t costsCopy[KSIZE_MAX] = {
-			70,  35,  33,  45,  80,  93,  40,  33,  35,  70,  80,  90,
-			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  60, 999,
-			50,  60,  30,  58,  93,  55,  30,  60,  50,  75, 999, 999,
+			70,  35,  33,  45,  80,  85,  40,  33,  35,  70,  80,  90,
+			16,   6,   0,   0,  55,  50,   0,   0,   6,  16,  45, 999,
+			50,  60,  30,  58,  95,  55,  30,  60,  50,  75, 999, 999,
 		};
 		
 		for (i = 0; i < ksize; ++i)
@@ -249,6 +249,16 @@ int initValues()
 			distanceCosts[i] = costsCopy[i];
 	}
 
+	// Mask out keys if we have a key mask 
+	// (this might not be required? since printable[] is also set according to mask..)
+	if (checkKeysMask()) {
+		for (i = 0; i < ksize; ++i) {
+			if (keysMask[i] == '0')
+				distanceCosts[i] = 999;
+		}
+	}
+
+
 	// Based on distance from the ctrl key and how much of a stretch it is.
 	shortcutCosts[ 0] =  0; shortcutCosts[ 1] =  0; shortcutCosts[ 2] =  1; shortcutCosts[ 3] =  3; shortcutCosts[ 4] =  4; 
 	shortcutCosts[ 5] =  8; shortcutCosts[ 6] = 10; shortcutCosts[ 7] = 10; shortcutCosts[ 8] = 10; shortcutCosts[ 9] = 10; 
@@ -271,7 +281,10 @@ void initCosts()
 	keepQWERTY = FALSE;
 	keepNumbers = 1;
 	keepBrackets = TRUE;
-	keepShiftPairs = 2;
+	//keepShiftPairs = 3; // whitespace, \b, islpha()
+	keepShiftPairLetters = 2; // islpha
+	keepShiftPairSpace = TRUE;
+	keepShiftPairOther = FALSE;
 	keepTab = TRUE;
 	keepConsonantsRight = FALSE;
 	keepNumbersShifted = FALSE;

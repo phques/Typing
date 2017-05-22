@@ -858,7 +858,9 @@ void initVariables()
     ADD_VAR(keepQWERTY, "(bool) try to keep keys in their QWERTY positions");
     ADD_VAR(keepNumbers, "(bool) keep numbers in place");
     ADD_VAR(keepBrackets, "(bool) keep brackets symmetrical");
-    ADD_VAR(keepShiftPairs, "0-3 Keep shifted/unshifted pairs together.\n\t\t0=none\n\t\t1=whitespace,backspace\n\t\t2=whitespace,backspace,letters\n\t\t3=all/always");
+	ADD_VAR(keepShiftPairLetters, "0-2 keep shifted/unshifted letters on same key (0=off, 1=[a-zA-Z], 2=isalpha())");
+	ADD_VAR(keepShiftPairSpace, "(bool) keep shifted/unshifted pair on same key, whitespace && '\\b'");
+	ADD_VAR(keepShiftPairOther, "(bool) keep shifted/unshifted pair on same key, other chars (ie symbols etc)");
     ADD_VAR(keepTab, "(bool) keep Tab in place");
     ADD_VAR(keepNumbersShifted, "(bool) numbers do not move between shifted and unshifted");
     ADD_VAR(numThreads, "number of threads to create\n");
@@ -963,8 +965,9 @@ int sethandbias(char *str)
 
 	for (int i = 0; i < ksize; ++i) {
 		int handCost = (hand[i] == LEFT ? leftAdjust : rightAdjust);
-		printf("handCost adjust %d\n", handCost);
-		distanceCosts[i] += handCost;
+		//printf("handCost adjust %d\n", handCost);
+		if (printable[i])
+			distanceCosts[i] += handCost;
 	}
 
 	return 0;
@@ -1032,6 +1035,21 @@ inline int keepShiftPair(char c)
 {
 	//return keepShiftPairs || isalpha(c) || isspace(c) || c == '\b';
 
+#if 1
+	if (keepShiftPairLetters == 1 && strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", c) != 0)
+		return TRUE;
+
+	if (keepShiftPairLetters == 2 && isalpha(c))
+		return TRUE;
+
+	if (keepShiftPairSpace && (isspace(c) || c == '\b'))
+		return TRUE;
+
+	if (keepShiftPairOther)
+		return TRUE;
+
+	return FALSE;
+#else
 	switch (keepShiftPairs)
 	{
 	case 0: 
@@ -1040,13 +1058,18 @@ inline int keepShiftPair(char c)
 	case 1: 
 		return isspace(c) || c == '\b';
 		break;
-	case 2: 
+	case 2:
+		//PQ I want french accented to be treated as symbols, so they can be moved between shifted/unshifted
+		// (I am using only lowercase, on different shifted/unshifted keys)
+		return isspace(c) || c == '\b' || strchr("abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXY", c) != 0;
+	case 3:
 		return isspace(c) || c == '\b' || isalpha(c);
-	case 3: 
+	case 4:
 	default: // sanity
 		// always / all
 		return TRUE;
 	}
+#endif
 }
 
 void setksize(int type)
