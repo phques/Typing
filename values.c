@@ -172,7 +172,17 @@ int initValues()
 		
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
-		
+
+	} else if (fullKeyboard == K_MAIN33) {
+		static int64_t costsCopy[KSIZE_MAX] = {
+			40,  40,  30,  40,  70,  80,  40,  30,  40,  40,   80,  90,
+			 0,   0,   0,   0,  30,  30,   0,   0,   0,   0,   45, 999,
+			70,  70,  70,  50,  95,  60,  40,  60,  70,  70,  999, 999,
+		};
+
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 	} else	if (fullKeyboard == K_BEAK) {
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row
