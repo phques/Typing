@@ -213,6 +213,15 @@ int initValues()
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 		uses idea of 3x3 'home block' vs home row
 		*/
+#if 1
+		// try going back to closer to original beakl (beakl + angleZ)
+		// tried top row index 15 vs 10 but worst numbers !?
+		static int64_t costsCopy[KSIZE_MAX] = {
+			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
+			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
+			20, 30, 10, 50, 90, 50, 10, 30, 20, 90
+		};
+#else
 		// PQ modified for perso taste (higher cost top row index, left hand bottom anglez / curl)
 		static int64_t costsCopy[KSIZE_MAX] = {
 			//90, 10, 10, 15, 50, 50, 15, 10, 10, 90,
@@ -223,7 +232,7 @@ int initValues()
 			50,   6,   0,   0,  45,  45,   0,   0,   6,  50,
 			20,  30,  10,  50,  93,  50,  10,  30,  20,  75,
 		};
-
+#endif
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 

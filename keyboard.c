@@ -246,6 +246,7 @@ int layoutFromFile(FILE *file, Keyboard *k)
 		} else if (strchr(keysToInclude, c) == NULL) {
 			fprintf(stderr, "Error: In layoutFromFile(), character '%c' (#%d) may not be used in a keyboard.\n", c, c);
 			fprintf(stderr, "i = %d\n", i);
+			fprintf(stderr, "keysToInclude = %s\n", keysToInclude);
 			copyKeyboard(k, &nilKeyboard);
 			return -1;
 		} else {
