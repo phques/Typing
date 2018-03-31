@@ -37,6 +37,7 @@
 #define K_CURLAZ33 8
 #define K_CURLAZ32 9
 #define K_MAIN33 10
+#define K_BEAKPQ33 11
 
 #define TRUE 1
 #define FALSE 0

@@ -67,6 +67,7 @@ int initData()
 	else if (fullKeyboard == K_MAIN33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
 	else if (fullKeyboard == K_BEAK) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQ) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
+	else if (fullKeyboard == K_BEAKPQ33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
 	else if (fullKeyboard == K_BEAKPQFULL) strcpy(keysToInclude, DEFAULT_KEYBOARD_STANDARD);
 
 	initKeyboardData();
@@ -412,7 +413,7 @@ void initKeyboardData()
 		};
 		copyArray(printable, printableCopy, ksize);
 
-	} else if (fullKeyboard == K_CURLAZ33) { 
+	} else if (fullKeyboard == K_CURLAZ33 || fullKeyboard == K_BEAKPQ33) {
 		static int fingerCopy[KSIZE_MAX] = {
 			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, PINKY, PINKY,
 			PINKY, RING,  MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, PINKY, PINKY,
@@ -1167,6 +1168,7 @@ void setksize(int type)
 		break;
 	case K_CURLAZ33:
 	case K_MAIN33:
+	case K_BEAKPQ33:
 		ksize = 36;
 		trueksize = 33;
 		kbdFilename = NULL;

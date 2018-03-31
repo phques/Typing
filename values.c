@@ -187,24 +187,22 @@ int initValues()
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row
 		*/
+#if 0
+		// BEAKL 8-9 according to http://shenafu.com/smf/index.php?topic=89.msg2180#msg2180
+      
+		static int64_t costsCopy[KSIZE_MAX] = {
+		   150, 15, 10, 15, 50,   50, 15, 10, 15, 150,
+			50,  5,  5,  5, 15,   15,  5,  5,  5, 50, 
+			70, 20, 50, 10, 70,   70, 10, 50, 20, 70
+		};
+#else
+        // older BEAKL weights  ver 3 ??
 		static int64_t costsCopy[KSIZE_MAX] = {
 			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
 			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
 			90, 20, 30, 10, 50, 50, 10, 30, 20, 90 
 		};
-
-		for (i = 0; i < ksize; ++i)
-			distanceCosts[i] = costsCopy[i];
-
-	} else	if (fullKeyboard == K_BEAK) {
-		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
-			uses idea of 3x3 'home block' vs home row
-		*/
-		static int64_t costsCopy[KSIZE_MAX] = {
-			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
-			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
-			90, 20, 30, 10, 50, 50, 10, 30, 20, 90 
-		};
+#endif
 
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
@@ -233,6 +231,22 @@ int initValues()
 			20,  30,  10,  50,  93,  50,  10,  30,  20,  75,
 		};
 #endif
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
+	} else if (fullKeyboard == K_BEAKPQ33) {
+		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
+		uses idea of 3x3 'home block' vs home row
+		*/
+
+		// try going back to closer to original beakl (beakl + angleZ)
+		// tried top row index 15 vs 10 but worst numbers !?
+		static int64_t costsCopy[KSIZE_MAX] = {
+			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,	110, 120,
+			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,	100, 999,
+			20, 30, 10, 50, 90, 50, 10, 30, 20, 90,	999, 999,
+		};
+
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 
