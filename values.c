@@ -187,7 +187,7 @@ int initValues()
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row
 		*/
-#if 0
+#if 1
 		// BEAKL 8-9 according to http://shenafu.com/smf/index.php?topic=89.msg2180#msg2180
       
 		static int64_t costsCopy[KSIZE_MAX] = {
