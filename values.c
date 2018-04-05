@@ -189,12 +189,16 @@ int initValues()
 		*/
 #if 1
 		// BEAKL 8-9 according to http://shenafu.com/smf/index.php?topic=89.msg2180#msg2180
-        // slight mod PQ 2018-04-04  mid col index 15 -> 18
+        // slight mod PQ 2018-04
 		static int64_t costsCopy[KSIZE_MAX] = {
-		   150, 15, 10, 15, 50,   50, 15, 10, 15, 150,
+		   150, 15, 10, 20, 50,   50, 20, 10, 15, 150,
 			50,  5,  5,  5, 18,   18,  5,  5,  5, 50, 
-			70, 20, 50, 10, 70,   70, 10, 50, 20, 70
+			70, 15, 50, 10, 70,   70, 10, 50, 15, 70
 		};
+		   // 150, 15, 10, 15, 50,   50, 15, 10, 15, 150,
+			// 50,  5,  5,  5, 15,   15,  5,  5,  5, 50, 
+			// 70, 20, 50, 10, 70,   70, 10, 50, 20, 70
+        
 #else
         // older BEAKL weights  ver 3 ??
 		static int64_t costsCopy[KSIZE_MAX] = {
