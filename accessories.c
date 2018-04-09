@@ -122,6 +122,9 @@ int getCommands()
 			} else if (streq(cmd + str_len, "beakpqfull")) {
 				setksize(K_BEAKPQFULL);
 				printf("Keyboard set to beakpqfull. All user-defined values have been reset.\n\n");
+			} else if (streq(cmd + str_len, "beaklasalle")) {
+				setksize(K_BEAKLASALLE);
+				printf("Keyboard set to beakLaSalle. All user-defined values have been reset.\n\n");
 			} else {
 				puts("Undefined input. Valid inputs:");
 				puts(" \"setksize no\" (do not use full keyboard)");
@@ -136,6 +139,7 @@ int getCommands()
 				puts(" \"setksize beakpq\" (BEAK PQ, 30 keys)");
 				puts(" \"setksize beakpq33\" (BEAK PQ, 33 keys)");
 				puts(" \"setksize beakpqfull\" (BEAK PQ, full keyboard)");
+				puts(" \"setksize beaklasalle\" (BEAK LaSalle, 30 keys)");
 			}
 			
 		} else if (streqn(cmd, "setmask ", 8)) {

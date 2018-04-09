@@ -67,6 +67,7 @@ int initData()
 	else if (fullKeyboard == K_MAIN33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
 	else if (fullKeyboard == K_BEAK) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQ) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
+	else if (fullKeyboard == K_BEAKLASALLE) strcpy(keysToInclude, DEFAULT_KEYBOARD_30);
 	else if (fullKeyboard == K_BEAKPQ33) strcpy(keysToInclude, DEFAULT_KEYBOARD_33);
 	else if (fullKeyboard == K_BEAKPQFULL) strcpy(keysToInclude, DEFAULT_KEYBOARD_STANDARD);
 
@@ -80,7 +81,7 @@ void initKeyboardData()
 {
 	int i;
 
-	if (fullKeyboard == K_NO || fullKeyboard == K_BEAK) { // no changes here for BEAK
+	if (fullKeyboard == K_NO || fullKeyboard == K_BEAK || fullKeyboard == K_BEAKLASALLE) { // no changes here for BEAK
 		static int fingerCopy[KSIZE_MAX] = {
 			PINKY, RING, MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, 
 			PINKY, RING, MIDDLE, INDEX, INDEX, INDEX, INDEX, MIDDLE, RING, PINKY, 
@@ -1136,6 +1137,7 @@ void setksize(int type)
 	case K_CURLAZ30:
 	case K_BEAK:
 	case K_BEAKPQ:
+	case K_BEAKLASALLE:
 		ksize = 30;
 		trueksize = 30;
 		kbdFilename = "layoutStore.txt";

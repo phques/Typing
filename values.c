@@ -183,6 +183,26 @@ int initValues()
 		for (i = 0; i < ksize; ++i)
 			distanceCosts[i] = costsCopy[i];
 
+	} else	if (fullKeyboard == K_BEAKLASALLE) {
+		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
+			uses idea of 3x3 'home block' vs home row
+		*/
+
+		// BEAKL 8-9 according to http://shenafu.com/smf/index.php?topic=89.msg2180#msg2180
+        // mod PQ 2018-04, trying to get LaSalle fingering, where home row uses awef jio;
+        // hmm not really home block anymore !!
+		static int64_t costsCopy[KSIZE_MAX] = {
+		   150,  5,  5, 15, 50,   50, 15,  5,  5, 150,
+			 8, 10, 10,  5, 18,   18,  5, 10, 10, 8, 
+			70, 50, 50, 15, 70,   70, 15, 50, 50, 70
+		};
+		   // 150, 15, 10, 15, 50,   50, 15, 10, 15, 150,
+			// 50,  5,  5,  5, 15,   15,  5,  5,  5, 50, 
+			// 70, 20, 50, 10, 70,   70, 10, 50, 20, 70
+        
+		for (i = 0; i < ksize; ++i)
+			distanceCosts[i] = costsCopy[i];
+
 	} else	if (fullKeyboard == K_BEAK) {
 		/* weights from BEAK, http://shenafu.com/smf/index.php?topic=89.msg785#msg785
 			uses idea of 3x3 'home block' vs home row
