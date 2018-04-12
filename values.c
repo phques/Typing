@@ -192,8 +192,11 @@ int initValues()
         // mod PQ 2018-04, trying to get LaSalle fingering, where home row uses awef jio;
         // hmm not really home block anymore !!
 		static int64_t costsCopy[KSIZE_MAX] = {
+		   // 150,  5,  5, 15, 50,   50, 15,  5,  5, 150,
+			 // 8, 10, 10,  5, 18,   18,  5, 10, 10, 8, 
+			// 70, 50, 50, 15, 70,   70, 15, 50, 50, 70
 		   150,  5,  5, 15, 50,   50, 15,  5,  5, 150,
-			 8, 10, 10,  5, 18,   18,  5, 10, 10, 8, 
+			30, 10, 10,  5, 20,   20,  5, 10, 10, 30, 
 			70, 50, 50, 15, 70,   70, 15, 50, 50, 70
 		};
 		   // 150, 15, 10, 15, 50,   50, 15, 10, 15, 150,
