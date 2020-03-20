@@ -8,6 +8,26 @@
 
 #include "accessories.h"
 
+// return true / false
+static int getChars(char *src, char *dest)
+{
+    int c = 0;
+    while (c = *src++) {
+        if (c == '\\') {
+            c = convertEscapeChar(*src++);
+            if (c == 0) {
+                printf("unknown escape sequence \\%c\n", c);
+                return FALSE;
+            }
+        }
+        *dest++ = c;
+        *dest = 0;
+    }
+    // ok, return results
+    return TRUE;
+
+}
+
 int getCommands()
 {
 	printf("Welcome to the Keyboard Layout Optimizer. If you have questions or comments, contact Michael Dickens by email (mdickens93@gmail.com) or leave a comment at http://mathematicalmulticore.wordpress.com/category/keyboards/.\n");
@@ -150,10 +170,13 @@ int getCommands()
 			testFitness();
 		
 		} else if (streqn(cmd, "use ", 4)) {
-			strcpy(keysToInclude, cmd + 4);
-			initTypingData();
-			
-			printf("Now using keys: %s\n\n", cmd + 4);
+            char characters[512] = {0};
+
+            if (getChars(cmd + 4, characters)) {
+                strcpy(keysToInclude, characters);
+			    initTypingData();
+			    printf("Now using keys: %s\n\n", cmd + 4);
+            }
 
 		} else if (streq(cmd, "variables")) {
 			printf("Boolean variables should be set to 0 for false and 1 for true. Variables not specified as booleans are integers.\n");
