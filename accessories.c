@@ -14,9 +14,10 @@ static int getChars(char *src, char *dest)
     int c = 0;
     while (c = *src++) {
         if (c == '\\') {
-            c = convertEscapeChar(*src++);
+			char esc = *src++;
+            c = convertEscapeChar(esc);
             if (c == 0) {
-                printf("unknown escape sequence \\%c\n", c);
+                printf("unknown escape sequence \\%c\n", esc);
                 return FALSE;
             }
         }
