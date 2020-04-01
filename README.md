@@ -19,7 +19,15 @@ Changes to forked, PQ
  
 Note: using setmask calls setksize, which RESETS all variables, be carefull
 
- 
+2020-03-31
++ Moving towards supporting 4 layers (main+alt x 2 (shifted))  
+  Internal changes only. At this point, it still is only main+shifted as far as user is concerned
++ bringing back keepShiftPairs (ALL pairs stay together)
++ adding setKeepShiftPairsChars, to set which characters must stay in pairs.  
+  Any character in this list will stay with its counterpart.  
+  Defaults to old original MTGAP 
+
+
 ABOUT
 -----
 

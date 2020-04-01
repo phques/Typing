@@ -93,20 +93,21 @@ int64_t fingerWorkCosts[FINGER_COUNT];
 
 char keysMask[200]; // "1100.." use/not use key. Default is empty
 
+/*  list of keys that need to be kept with their shifted/unshifted counterpart */
+char keepShiftPairsChars[512]; 
+
 
 int detailedOutput, numThreads;
 
 /* 0 for false, 1 for true. 
  * keepNumbers: 2 if numbers can move about but must stay in number row.
- * keepShiftPairs: 0-4 see tools.c initVariables()
  * 
  * Some of these variables require that their condition be true, and others 
  * merely provide a penalty for not doing so.
  * The Former: keepNumbers, keepShiftPairs, keepTab
  * The Latter: keepZXCV, keepBrackets, keepNumbersShifted
  */
-int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, //keepShiftPairs, 
-	keepShiftPairLetters, keepShiftPairSpace, keepShiftPairOther,
+int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, keepShiftPairs, 
 	keepTab, keepConsonantsRight, 
 	keepNumbersShifted /* for bogboar */;
 int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost, 

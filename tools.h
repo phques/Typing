@@ -140,7 +140,6 @@ char getMatchingBracket(char c);
 
 int keepShiftPair(char c);
 
-
 char qwerty[30];
 
 /* For each key, indicates which hand (LEFT or RIGHT) is responsible for typing 

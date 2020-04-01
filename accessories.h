@@ -13,9 +13,6 @@
 
 int getCommands();
 
-int game();
-int gameComputer(Keyboard *k, char difficulty);
-
 int worstDigraphsFromFile(const char *filename, int damagingp);
 int worstDigraphs(Keyboard *k, int damagingp);
 

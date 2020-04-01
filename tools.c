@@ -914,10 +914,8 @@ void initVariables()
     ADD_VAR(keepQWERTY, "(bool) try to keep keys in their QWERTY positions");
     ADD_VAR(keepNumbers, "(bool) keep numbers in place");
     ADD_VAR(keepBrackets, "(bool) keep brackets symmetrical");
-	ADD_VAR(keepShiftPairLetters, "0-2 keep shifted/unshifted letters on same key (0=off, 1=[a-zA-Z], 2=isalpha())");
-	ADD_VAR(keepShiftPairSpace, "(bool) keep shifted/unshifted pair on same key, whitespace && '\\b'");
-	ADD_VAR(keepShiftPairOther, "(bool) keep shifted/unshifted pair on same key, other chars (ie symbols etc)");
-    ADD_VAR(keepTab, "(bool) keep Tab in place");
+	ADD_VAR(keepShiftPairs, "(bool) all shifted/unshifted pairs stay together");
+	ADD_VAR(keepTab, "(bool) keep Tab in place");
     ADD_VAR(keepNumbersShifted, "(bool) numbers do not move between shifted and unshifted");
     ADD_VAR(numThreads, "number of threads to create\n");
     ADD_VAR(distance, NULL);
@@ -1086,46 +1084,14 @@ inline char getMatchingBracket(char c)
  * If c should be kept in a pair with its shifted or unshifted character, 
  * returns true. Otherwise, returns false.
  * 
+ * All pairs kept togheter if keepShiftPairs is true
+ * or part of keepShiftPairsChars
  */
 inline int keepShiftPair(char c)
 {
 	//return keepShiftPairs || isalpha(c) || isspace(c) || c == '\b';
 
-#if 1
-	if (keepShiftPairLetters == 1 && strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", c) != 0)
-		return TRUE;
-
-	if (keepShiftPairLetters == 2 && isalpha(c))
-		return TRUE;
-
-	if (keepShiftPairSpace && (isspace(c) || c == '\b'))
-		return TRUE;
-
-	if (keepShiftPairOther)
-		return TRUE;
-
-	return FALSE;
-#else
-	switch (keepShiftPairs)
-	{
-	case 0: 
-		// never / none
-		return FALSE;
-	case 1: 
-		return isspace(c) || c == '\b';
-		break;
-	case 2:
-		//PQ I want french accented to be treated as symbols, so they can be moved between shifted/unshifted
-		// (I am using only lowercase, on different shifted/unshifted keys)
-		return isspace(c) || c == '\b' || strchr("abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXY", c) != 0;
-	case 3:
-		return isspace(c) || c == '\b' || isalpha(c);
-	case 4:
-	default: // sanity
-		// always / all
-		return TRUE;
-	}
-#endif
+	return (strchr(keepShiftPairsChars, c) != 0);
 }
 
 void setksize(int type)

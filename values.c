@@ -389,10 +389,7 @@ void initCosts()
 	keepQWERTY = FALSE;
 	keepNumbers = 1;
 	keepBrackets = TRUE;
-	//keepShiftPairs = 3; // whitespace, \b, islpha()
-	keepShiftPairLetters = 2; // islpha
-	keepShiftPairSpace = TRUE;
-	keepShiftPairOther = FALSE;
+	keepShiftPairs = 0;
 	keepTab = TRUE;
 	keepConsonantsRight = FALSE;
 	keepNumbersShifted = FALSE;
