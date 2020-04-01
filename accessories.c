@@ -29,8 +29,20 @@ static int getChars(char *src, char *dest)
 
 }
 
+static void showChars(const char* src)
+{
+	char c, buff[16];
+	while ((c = *src++)) {
+		charToPrintable(buff, c, TRUE, FALSE);
+		printf("%s", buff);
+	}
+}
+
 int getCommands()
 {
+	static char keysToIncludeLower[200] = { 0 };
+	static char keysToIncludeUpper[200] = { 0 };
+
 	printf("Welcome to the Keyboard Layout Optimizer. If you have questions or comments, contact Michael Dickens by email (mdickens93@gmail.com) or leave a comment at http://mathematicalmulticore.wordpress.com/category/keyboards/.\n");
 	printf("Type \"help\" for a listing of commands.\n\n");
 
@@ -60,6 +72,8 @@ int getCommands()
 			printf("setmask 10110... (ksize digits) Sets kbd keys mask, sets keys to use.\n");
 			printf("test fitness: Test that the fitness functions are working properly.\n");
 			printf("use <keys>: Use <keys> in the keyboard layout instead of the default.\n");
+			printf("usel <keys>: Use lowercase <keys> in the keyboard layout instead of the default.\n");
+			printf("useu <keys>: Use uppercase <keys> in the keyboard layout instead of the default.\n");
 			printf("worst <filename>: Find the worst digraphs for the keyboard layouts in <filename>.\n");
 			printf("variables: Print all variables that can be modified.\n");
 			printf("quit: Quit the keyboard optimization program.\n");
@@ -186,8 +200,41 @@ int getCommands()
             if (getChars(cmd + 4, characters)) {
                 strcpy(keysToInclude, characters);
 			    initTypingData();
-			    printf("Now using keys: %s\n\n", cmd + 4);
+
+			    printf("Now using keys: <");
+				showChars(keysToInclude);
+				printf(">\n\n");
             }
+		}
+		else if (streqn(cmd, "usel ", 5)) {
+			char characters[512] = { 0 };
+
+			if (getChars(cmd + 5, characters)) {
+				strcpy(keysToIncludeLower, characters);
+
+				strcpy(keysToInclude, keysToIncludeLower);
+				strcat(keysToInclude, keysToIncludeUpper);
+				initTypingData();
+
+				printf("Now using keys: <");
+				showChars(keysToInclude);
+				printf(">\n\n");
+			}
+		}
+		else if (streqn(cmd, "useu ", 5)) {
+			char characters[512] = { 0 };
+
+			if (getChars(cmd + 5, characters)) {
+				strcpy(keysToIncludeUpper, characters);
+
+				strcpy(keysToInclude, keysToIncludeLower);
+				strcat(keysToInclude, keysToIncludeUpper);
+				initTypingData();
+
+				printf("Now using keys: <");
+				showChars(keysToInclude);
+				printf(">\n\n");
+			}
 
 		} else if (streq(cmd, "variables")) {
 			printf("Boolean variables should be set to 0 for false and 1 for true. Variables not specified as booleans are integers.\n");
@@ -298,8 +345,8 @@ int worstDigraphs(Keyboard *k, int damagingp)
 	for (i = 0; i < diLen; ++i) {
 		char buf1[5];
 		char buf2[5];
-		charToPrintable(buf1, worst[i].key[0], FALSE);
-		charToPrintable(buf2, worst[i].key[1], FALSE);
+		charToPrintable(buf1, worst[i].key[0], FALSE, TRUE);
+		charToPrintable(buf2, worst[i].key[1], FALSE, TRUE);
 		
 		printf("%s%s = %lld\n", buf1, buf2, worst[i].value);
 		

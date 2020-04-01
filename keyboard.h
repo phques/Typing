@@ -19,7 +19,7 @@
  * 
  * WARNING: Both k and index are evaluated multiple times.
  */
-#define charAt(k, index) ((k)->layout2[(char)((index)/ksize)][(index)%ksize])
+#define charAt(k, index) ( (int) ((k)->layout2[(index)/ksize][(index)%ksize]) )
 #define setCharAt(k, index, c) charAt((k), (index)) = (c)
 //#define charAt(k, index) ((index) < ksize ? (k)->layout[index] : (k)->layout[1][index - ksize])
 //#define setCharAt(k, index, c) ((index) < ksize ? ((k)->layout[index] = (c)) : ((k)->layout[1][index - ksize] = (c)))
@@ -35,7 +35,7 @@ int swapPair(Keyboard *k, int loc1, int loc2);
 int printLayoutOnly(Keyboard *k);
 int printLayoutRaw(char layout[]);
 int printPercentages(Keyboard *k);
-int charToPrintable(char *buffer, char c, int changeSpace);
+int charToPrintable(char *buffer, char c, int changeSpace, int addSpace);
 
 int qwertyPositions(Keyboard *k);
 int readLayouts(Keyboard pool[], int length);

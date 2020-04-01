@@ -389,7 +389,7 @@ int printLayoutRaw(char layout[])
 	char str[10];
 	
 	for (i = 0; i < ksize; ++i) {
-		charToPrintable(str, layout[i], TRUE);
+		charToPrintable(str, layout[i], TRUE, TRUE);
 
 		if (keyboardForm == K_KINESIS) {
 			if (printable[i]) {
@@ -508,14 +508,14 @@ int printPercentages(Keyboard *k)
  * 
  * Converts ' ' to "SP" if changeSpace is true.
  */
-int charToPrintable(char *buffer, char c, int changeSpace)
+int charToPrintable(char *buffer, char c, int changeSpace, int addSpace)
 {
 	if (c == '\n') sprintf(buffer, "\\n");
 	else if (c == '\t') sprintf(buffer, "\\t");
 	else if (c == ASCII_SHIFT) sprintf(buffer, "\\s");
 	else if (c == '\b') sprintf(buffer, "\\b");
 	else if (changeSpace && c == ' ') sprintf(buffer, "SP");
-	else sprintf(buffer, "%2c", c);
+	else sprintf(buffer, "%*c", (addSpace ? 2 : 1), c);
 
 	return 0;
 }
