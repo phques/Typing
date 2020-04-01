@@ -122,8 +122,9 @@ int calcFitness(Keyboard *k)
 	/* Calculate all the locations beforehand. This saves a lot of time. */
 	for (i = 0; i < ksize; ++i)
 		if (printable[i]) {
-			locs[(int) k->layout[i]] = i;
-			locs[(int) k->shiftedLayout[i]] = ksize + i;
+			locs[(int)k->layout2[0][i]] = i;
+			locs[(int) k->layout2[1][i]] = ksize + i;
+			//locs[(int) k->shiftedLayout[i]] = ksize + i;
 		}
 	
 	for (i = 0; i < diLen; ++i) {
@@ -264,7 +265,8 @@ inline int64_t calcNumbersShifted(Keyboard *k)
 	
 	char c;
 	for (c = '0'; c <= '9'; ++c)
-		if (strchr(k->shiftedLayout, c))
+		//if (strchr(k->shiftedLayout, c))
+		if (strchr(k->layout2[1], c))
 			score += numbersShiftedCost;
 	
 	return score;

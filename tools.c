@@ -31,7 +31,7 @@ int initData()
 	srand((unsigned int) time(NULL));
 	
 	for (i = 0; i <= ksize; ++i)
-		nilKeyboard.layout[i] = nilKeyboard.shiftedLayout[i] = '\0';
+		nilKeyboard.layout2[0][i] = nilKeyboard.layout2[1][i] = '\0';
 	nilKeyboard.fitness = FITNESS_MAX;
 	nilKeyboard.distance = 0;
 	nilKeyboard.inRoll = 0;

@@ -19,8 +19,10 @@
  * 
  * WARNING: Both k and index are evaluated multiple times.
  */
-#define charAt(k, index) ((index) < ksize ? (k)->layout[index] : (k)->shiftedLayout[index - ksize])
-#define setCharAt(k, index, c) ((index) < ksize ? ((k)->layout[index] = (c)) : ((k)->shiftedLayout[index - ksize] = (c)))
+#define charAt(k, index) ((k)->layout2[(char)((index)/ksize)][(index)%ksize])
+#define setCharAt(k, index, c) charAt((k), (index)) = (c)
+//#define charAt(k, index) ((index) < ksize ? (k)->layout[index] : (k)->layout[1][index - ksize])
+//#define setCharAt(k, index, c) ((index) < ksize ? ((k)->layout[index] = (c)) : ((k)->layout[1][index - ksize] = (c)))
 
 void buildShuffledIndices(int indices[], int length);
 

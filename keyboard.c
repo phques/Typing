@@ -188,8 +188,8 @@ int setLayout(Keyboard *k, char *layout)
 					savedLayout, trueksize, strlen(savedLayout));
 			return -1;
 		}
-		if (printable[i]) k->layout[i] = *(layout++);
-		else k->layout[i] = 1; /* 1 is used as a placeholder */
+		if (printable[i]) k->layout2[0][i] = *(layout++);
+		else k->layout2[0][i] = 1; /* 1 is used as a placeholder */
 	}
 	
 	savedLayout = layout;
@@ -199,12 +199,12 @@ int setLayout(Keyboard *k, char *layout)
 					savedLayout, trueksize, strlen(savedLayout));
 			return -1;
 		}
-		if (printable[i]) k->shiftedLayout[i] = *(layout++);
-		else k->shiftedLayout[i] = 1;
+		if (printable[i]) k->layout2[1][i] = *(layout++);
+		else k->layout2[1][i] = 1;
 	}
 	
-	k->layout[i] = '\0';
-	k->shiftedLayout[i] = '\0';
+	k->layout2[0][i] = '\0';
+	k->layout2[1][i] = '\0';
 	
 	return 0;
 }
@@ -268,8 +268,8 @@ int layoutFromFile(FILE *file, Keyboard *k)
 				}
 			}
 						
-			if (i < ksize) k->layout[i] = (char) c;
-			else if (i < 2 * ksize) k->shiftedLayout[i - ksize] = (char) c;
+			if (i < ksize) k->layout2[0][i] = (char) c;
+			else if (i < 2 * ksize) k->layout2[1][i - ksize] = (char) c;
 
 			while (i+1 < 2 * ksize && !printable[(i+1) % ksize])
 				++i;
@@ -277,8 +277,8 @@ int layoutFromFile(FILE *file, Keyboard *k)
 		}
 	}
 	
-	k->layout[ksize] = '\0';
-	k->shiftedLayout[ksize] = '\0';
+	k->layout2[0][ksize] = '\0';
+	k->layout2[1][ksize] = '\0';
 	while (c != EOF && c != '\n') c = fgetc(file);
 		
 	if (noNewKeyboard)
@@ -312,26 +312,26 @@ inline int swap(Keyboard *k, int loc1, int loc2)
         return -1;
 	if (printable[loc1 % ksize] ^ printable[loc2 % ksize])
         return -2;
-	
-	if (keepShiftPair(k->layout[loc1 % ksize]) ||
-			 keepShiftPair(k->layout[loc2 % ksize])) {
+
+	if (keepShiftPair(k->layout2[0][loc1 % ksize]) ||
+		keepShiftPair(k->layout2[0][loc2 % ksize])) {
 		return swapPair(k, loc1, loc2);
 	}
-	
+
 	char *layout1;
 	char *layout2;
 	
 	if (loc1 < ksize) {
-        layout1 = k->layout;
+        layout1 = k->layout2[0];
 	} else {
-		layout1 = k->shiftedLayout;
+		layout1 = k->layout2[1];
 		loc1 -= ksize;
 	}
 	
 	if (loc2 < ksize) {
-        layout2 = k->layout;
+        layout2 = k->layout2[0];
     } else {
-		layout2 = k->shiftedLayout;
+		layout2 = k->layout2[1];
 		loc2 -= ksize;
 	}
 	
@@ -350,13 +350,13 @@ inline int swapPair(Keyboard *k, int loc1, int loc2)
 	if (loc1 < 0 || loc2 < 0 || loc1 >= ksize || loc2 >= ksize) return -1;
 	if (printable[loc1] ^ printable[loc2]) return -2;
 	
-	char temp = k->layout[loc1];
-	k->layout[loc1] = k->layout[loc2];
-	k->layout[loc2] = temp;
+	char temp = k->layout2[0][loc1];
+	k->layout2[0][loc1] = k->layout2[0][loc2];
+	k->layout2[0][loc2] = temp;
 	
-	temp = k->shiftedLayout[loc1];
-	k->shiftedLayout[loc1] = k->shiftedLayout[loc2];
-	k->shiftedLayout[loc2] = temp;
+	temp = k->layout2[1][loc1];
+	k->layout2[1][loc1] = k->layout2[1][loc2];
+	k->layout2[1][loc2] = temp;
 	
 	return 0;
 }
@@ -369,7 +369,7 @@ int qwertyPositions(Keyboard *k)
 	
 	int i;
 	for (i = 0; i < ksize; ++i)
-		if (k->layout[i] == qwerty[i])
+		if (k->layout2[0][i] == qwerty[i])
 			count++;
 	
 	return count;
@@ -377,8 +377,8 @@ int qwertyPositions(Keyboard *k)
 
 int printLayoutOnly(Keyboard *k)
 {
-	printLayoutRaw(k->shiftedLayout);
-	printLayoutRaw(k->layout);
+	printLayoutRaw(k->layout2[1]);
+	printLayoutRaw(k->layout2[0]);
 	return 0;
 }
 
@@ -543,8 +543,8 @@ int isLegalSwap(Keyboard *k, int i, int j)
 	int isShiftedJ = (j >= ksize);
 	if (isShiftedI != isShiftedJ) {
 		/* don't swap between shifted/unshifted if need to keep shifted pair for one of the keys  */
-		if (keepShiftPair(k->shiftedLayout[i % ksize]) || keepShiftPair(k->layout[i % ksize]) ||
-			keepShiftPair(k->shiftedLayout[j % ksize]) || keepShiftPair(k->layout[j % ksize]))
+		if (keepShiftPair(k->layout2[1][i % ksize]) || keepShiftPair(k->layout2[0][i % ksize]) ||
+			keepShiftPair(k->layout2[1][j % ksize]) || keepShiftPair(k->layout2[0][j % ksize]))
 			return FALSE;
 	}
 
@@ -605,11 +605,11 @@ inline void shuffleLayout(Keyboard *k)
 
 inline int locIgnoreShifted(Keyboard *k, char c)
 {
-	char *ptr = strchr(k->layout, c);
-    if (ptr) return (int) (ptr - k->layout);
+	char *ptr = strchr(k->layout2[0], c);
+    if (ptr) return (int) (ptr - k->layout2[0]);
     
-    ptr = strchr(k->shiftedLayout, c);
-    if (ptr) return (int) (ptr - k->shiftedLayout);
+    ptr = strchr(k->layout2[1], c);
+    if (ptr) return (int) (ptr - k->layout2[1]);
 	
 	return -1;
 }
@@ -619,11 +619,11 @@ inline int locIgnoreShifted(Keyboard *k, char c)
  */
 inline int locWithShifted(Keyboard *k, char c)
 {
-	char *ptr = strchr(k->layout, c);
-    if (ptr) return (int) (ptr - k->layout);
+	char *ptr = strchr(k->layout2[0], c);
+    if (ptr) return (int) (ptr - k->layout2[0]);
     
-    ptr = strchr(k->shiftedLayout, c);
-    if (ptr) return (int) (ptr - k->shiftedLayout) + ksize;
+    ptr = strchr(k->layout2[1], c);
+    if (ptr) return (int) (ptr - k->layout2[1]) + ksize;
 	
 	return -1;	
 }

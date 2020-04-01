@@ -44,6 +44,7 @@ release: $(PROGRAMS)
 release: CFLAGS += $(RELEASE_FLAGS)
 
 # Dependencies
+# optimizer: accessories.o fitness.o keyboard.o tools.o values.o
 optimizer: accessories.o cjalgorithm.o fitness.o keyboard.o tools.o values.o
 unit: accessories.o cjalgorithm.o fitness.o keyboard.o tools.o values.o
 

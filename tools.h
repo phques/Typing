@@ -80,9 +80,9 @@ struct Digraph digraphs[DI_LEN_MAX];
 char keysToInclude[200];
 
 typedef struct {
-	char layout[KSIZE_MAX + 1]; /* The one extra character is set to '\0' so 
+	char layout2[2][KSIZE_MAX + 1]; /* The one extra character is set to '\0' so 
 								(layout) can be treated as a string. */
-	char shiftedLayout[KSIZE_MAX + 1];
+	//char shiftedLayout[KSIZE_MAX + 1];
 	int64_t fingerUsage[FINGER_COUNT];
 	int64_t fitness;
 	int64_t distance;
