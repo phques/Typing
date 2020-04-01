@@ -12,7 +12,7 @@
 static int getChars(char *src, char *dest)
 {
     int c = 0;
-    while (c = *src++) {
+    while ((c = *src++)) {
         if (c == '\\') {
 			char esc = *src++;
             c = convertEscapeChar(esc);
@@ -55,6 +55,7 @@ int getCommands()
             printf("run: See 'algorithm'.\n");
 			printf("set <variable> <value>: Set the specified variable to the given value.\n");
 			printf("sethandbias <bias>: adds cost to one hand. < 0 for left hand, > 0 for right hand\n");
+			printf("setkeeppairschars:<chars> Set which characters must 'keepShiftPairs'.\n");
 			printf("setksize <K_setting>: Set the keyboard type. Type \"setksize help\" for more information.\n");
 			printf("setmask 10110... (ksize digits) Sets kbd keys mask, sets keys to use.\n");
 			printf("test fitness: Test that the fitness functions are working properly.\n");
@@ -104,6 +105,15 @@ int getCommands()
 
 		} else if (streqn(cmd, "sethandbias ", strlen("sethandbias "))) {
 			sethandbias(cmd + 12);
+
+		}
+		else if (streqn(cmd, "setkeeppairschars:", strlen("setkeeppairschars:"))) {
+			char characters[512] = { 0 };
+
+			if (getChars(cmd + 18, characters)) {
+				strcpy(keepShiftPairsChars, characters);
+				printf("keepShiftPairsChars: <%s>\n\n", cmd + 18);
+			}
 
 		} else if (streqn(cmd, "setksize ", strlen("setksize "))) {
 			size_t str_len = strlen("setksize ");

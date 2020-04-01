@@ -11,7 +11,7 @@
 
 int main()
 {
-    int c;
+    int c, idx=0;
 
     /* Initialize the typing data and the keyboard layout settings. */
     strcpy(keysMask, ""); /* initialy empty*/
@@ -21,12 +21,8 @@ int main()
     for (c = 0; c < 256; c++)
     {
         if (isalpha(c) || isspace(c) || c == '\b')
-            strcat(keepShiftPairsChars, c);
+            keepShiftPairsChars[idx++] = c;
     }
-    //##pq debug
-    for (c = 0; c < 256 && keepShiftPairsChars[c]; c++)
-        printf("%c", keepShiftPairsChars[c]);
-    printf("\n");
 
     setksize(K_NO);
     getCommands();

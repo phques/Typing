@@ -1091,7 +1091,7 @@ inline int keepShiftPair(char c)
 {
 	//return keepShiftPairs || isalpha(c) || isspace(c) || c == '\b';
 
-	return (strchr(keepShiftPairsChars, c) != 0);
+	return keepShiftPairs || (strchr(keepShiftPairsChars, c) != 0);
 }
 
 void setksize(int type)
