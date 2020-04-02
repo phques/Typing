@@ -916,7 +916,8 @@ void initVariables()
     ADD_VAR(keepBrackets, "(bool) keep brackets symmetrical");
 	ADD_VAR(keepShiftPairs, "(bool) all shifted/unshifted pairs stay together");
 	ADD_VAR(keepTab, "(bool) keep Tab in place");
-    ADD_VAR(keepNumbersShifted, "(bool) numbers do not move between shifted and unshifted");
+	ADD_VAR(keepNumbersShifted, "(bool) numbers do not move between shifted and unshifted");
+	ADD_VAR(consoleEsc, "(bool) If true, uses Esc control sequences to format output");
     ADD_VAR(numThreads, "number of threads to create\n");
     ADD_VAR(distance, NULL);
     ADD_VAR(inRoll, NULL);
@@ -1097,7 +1098,8 @@ inline int keepShiftPair(char c)
 void setksize(int type)
 {
 	fullKeyboard = type;
-	
+	knumrows = 3; /* almost all */
+
 	switch (fullKeyboard) {
 	case K_NO:
 	case K_CURLAZ30:
@@ -1115,12 +1117,14 @@ void setksize(int type)
 		trueksize = 47;
 		kbdFilename = "fullLayoutStore.txt";
 		keyboardForm = K_STANDARD;
+		knumrows = 4;
 		break;
 	case K_KINESIS:
 		ksize = 72;
 		trueksize = 50;
 		kbdFilename = "kinesisLayoutStore.txt";
 		keyboardForm = K_KINESIS;
+		knumrows = 6;
 		break;
 	case K_IPHONE:
 		ksize = 30;

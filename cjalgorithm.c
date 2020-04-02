@@ -8,6 +8,8 @@
 
 #include "cjalgorithm.h"
 
+static int consoleText1stLine = 1;
+
 /* 
  * Runs a simple version of the algorithm without all the bells and whistles.
  * Only uses a single thread, and generally runs significantly slower than 
@@ -68,47 +70,83 @@ void runAlgorithm()
     time_t timeOnPrint = arg.startTime + printTimeInterval;
     
     int64_t prevBestFitness = FITNESS_MAX;
-	
+    
+    consoleText1stLine = 18 + (knumrows+1) * 2;
+
+    if (consoleEsc)
+        printf("\033[2J"); /*clear screen*/
+
     int runNum;
 	for (runNum = 0; runNum < MAX_RUNS; ++runNum) {
         if (runNum % runsBeforeChanceInc == 0) {
             arg.chanceToUsePreviousLayout =
                     pow(arg.chanceToUsePreviousLayout, CHANCE_EXPONENTIATOR);
 			runsBeforeChanceInc = (int) (runsBeforeChanceInc * 1.2) + 1;
-			if (detailedOutput)
+            if (detailedOutput) {
+                if (consoleEsc)
+                    printf("\033[%dH", consoleText1stLine); /*goto line */
+
                 printf("Chance to use previous layout is now %f.\n",
-                       arg.chanceToUsePreviousLayout);
+                    arg.chanceToUsePreviousLayout);
+            }
         }
         
         if (runNum % runsBeforeSwapsInc == 0) {
             ++arg.numberOfSwaps;
 			runsBeforeSwapsInc = (int) (runsBeforeSwapsInc * 1.2) + 1;
-			if (detailedOutput)
+            if (detailedOutput) {
+                if (consoleEsc)
+                    printf("\033[%dH", consoleText1stLine+1); /*goto line */
+
                 printf("Number of swaps between rounds is now %d.\n",
-                       arg.numberOfSwaps);
+                    arg.numberOfSwaps);
+            }
         }
         
         if (runNum % RUNS_BEFORE_GTB_ROUNDS_INC == 0) {
             gtbRounds *= 2;
-            if (detailedOutput)
+            if (detailedOutput) {
+                if (consoleEsc)
+                    printf("\033[%dH", consoleText1stLine+2); /*goto line */
+
                 printf("Number of rounds in greatToBest() is now %d.\n",
-                       gtbRounds);
+                    gtbRounds);
+            }
         }
         
 		runThreadsRec((void *) (&arg));
 		        
         if (arg.bestk.fitness < prevBestFitness) {
             prevBestFitness = arg.bestk.fitness;
+            if (consoleEsc)
+                printf("\033[H"); /*goto home pos*/
+
             printPercentages(&arg.bestk);
+
+            if (consoleEsc)
+                printf("\033[%dH", consoleText1stLine+3); /*goto line */
+
             printTime(arg.startTime);
             
             /* If a keyboard was just printed, don't print the time for  
              * a while.
              */
-            timeOnPrint = time(NULL) + printTimeInterval;
+            if (consoleEsc)
+                timeOnPrint = time(NULL) + 1;
+            else
+                timeOnPrint = time(NULL) + printTimeInterval;
+
         } else if (time(NULL) >= timeOnPrint && detailedOutput) {
+            if (consoleEsc)
+                printf("\033[%dH", consoleText1stLine + 3); /*goto line */
+
             printTime(arg.startTime);
-            timeOnPrint = time(NULL) + printTimeInterval;
+
+            if (consoleEsc)
+                timeOnPrint = time(NULL) + 1;
+            else
+                timeOnPrint = time(NULL) + printTimeInterval;
+
             printTimeInterval = 1.5 * printTimeInterval + 1;
         }
         
@@ -117,9 +155,14 @@ void runAlgorithm()
         
         if (arg.bestk.fitness < bestBeforeGTB) {
             prevBestFitness = arg.bestk.fitness;
-            if (detailedOutput)
-                printf("\n***Found from greatToBest()***\n");
+            if (consoleEsc)
+                printf("\033[H"); /*goto home pos*/
+            //if (detailedOutput)
+            //    printf("\n***Found from greatToBest()***\n");
             printPercentages(&arg.bestk);
+
+            if (consoleEsc)
+                printf("\033[%dH", consoleText1stLine + 3); /*goto line */
             printTime(arg.startTime);
         }
 	}
@@ -184,7 +227,12 @@ void * runThreadsRec(void *arg)
             /* Only print keyboards on the bottom thread.
              */
             if (threadArg->numThreads <= 1) {
+                if (consoleEsc)
+                    printf("\033[H"); /*goto home pos*/
                 printPercentages(&threadArg->bestk);
+
+                if (consoleEsc)
+                    printf("\033[%dH", consoleText1stLine + 3); /*goto line */
                 printTime(threadArg->startTime);
             }
         }

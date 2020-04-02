@@ -27,6 +27,10 @@ Note: using setmask calls setksize, which RESETS all variables, be carefull
   Any character in this list will stay with its counterpart.  
   Defaults to old original MTGAP 
 
+2020-04-01
++ Added variables consoleEsc: when True, uses Console Escape control codes to 
+ format the output (ie layout on top, stats on execution below)
+
 
 ABOUT
 -----

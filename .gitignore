@@ -18,3 +18,8 @@ performance data
 /.vs
 *.exe
 /tt
+
+.vs
+Debug
+Release
+*.vcxproj.user

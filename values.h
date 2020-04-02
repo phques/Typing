@@ -47,7 +47,7 @@
 int fullKeyboard;
 int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 K_CURLAZ32 */
 
-int ksize, trueksize;
+int ksize, trueksize, knumrows;
 char *kbdFilename;
 
 #define FITNESS_MAX INT64_MAX
@@ -109,7 +109,8 @@ int detailedOutput, numThreads;
  */
 int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, keepShiftPairs, 
 	keepTab, keepConsonantsRight, 
-	keepNumbersShifted /* for bogboar */;
+	keepNumbersShifted, /* for bogboar */
+    consoleEsc;
 int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost, 
 	bracketsCost, numbersShiftedCost;
 

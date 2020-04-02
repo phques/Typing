@@ -393,6 +393,7 @@ void initCosts()
 	keepTab = TRUE;
 	keepConsonantsRight = FALSE;
 	keepNumbersShifted = FALSE;
+	consoleEsc = FALSE;
 	
 	zCost = 10;
 	xCost =  6;
