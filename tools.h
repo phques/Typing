@@ -102,7 +102,9 @@ typedef struct {
 Keyboard nilKeyboard;
 
 void copyArray(int dest[], int src[], int length);
-void printTime(time_t start);
+void printTime(time_t start, const char* prefixMsg);
+void printCurrTime(const char* prefixMsg);
+
 
 int initData();
 void initKeyboardData();

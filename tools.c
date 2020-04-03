@@ -14,12 +14,20 @@ void copyArray(int dest[], int src[], int length)
 	memcpy(dest, src, length * sizeof(int));
 }
 
-void printTime(time_t start)
+void printTime(time_t start, const char* prefixMsg)
 {
     time_t finish = time(NULL);
-    printf("Time elapsed: %ld hours, %ld minutes, %ld seconds\n",
-           (finish-start) / 3600, ((finish - start) % 3600) / 60,
-           (finish-start) % 60);
+    printf("%s: %ld hours, %ld minutes, %ld seconds\n",
+		prefixMsg,
+		(finish-start) / 3600, ((finish - start) % 3600) / 60,
+        (finish-start) % 60);
+}
+
+void printCurrTime(const char* prefixMsg)
+{
+	time_t now = time(NULL);
+	struct tm* nowLocalTm = localtime(&now);
+	printf("%s %02d:%02d:%02d", prefixMsg, nowLocalTm->tm_hour, nowLocalTm->tm_min, nowLocalTm->tm_sec);
 }
 
 int initData()

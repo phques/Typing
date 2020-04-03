@@ -287,13 +287,18 @@ int initValues()
 		uses idea of 3x3 'home block' vs home row
 		*/
 #if 1
+		static int64_t costsCopy[KSIZE_MAX] = {
+			// based on currnt numbers from beakl lasalle
+			//nb: no anglez weights
+		   250,  50,  50, 100, 200,  200, 100,  50,  50, 250,
+			90,   4,  0,   4, 110,  110,   4,   0,   4, 90,
+		   180,  90,  90,  80, 140,  135,  80,  90,  90, 180
+		};
 		// try going back to closer to original beakl (beakl + angleZ)
 		// tried top row index 15 vs 10 but worst numbers !?
-		static int64_t costsCopy[KSIZE_MAX] = {
-			90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
-			50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
-			20, 30, 10, 50, 90, 50, 10, 30, 20, 90
-		};
+			//90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
+			//50,  5,  5,  5, 20, 20,  5,  5,  5, 50,
+			//20, 30, 10, 50, 90, 50, 10, 30, 20, 90
 #else
 		// PQ modified for perso taste (higher cost top row index, left hand bottom anglez / curl)
 		static int64_t costsCopy[KSIZE_MAX] = {

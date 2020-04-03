@@ -34,7 +34,7 @@ void runSimpleAlgorithm()
             copyKeyboard(&bestk, &k);
             printPercentages(&bestk);
             printf("%d Rounds\n", roundNum);
-            printTime(startTime);
+            printTime(startTime, "Time elapsed");
             
             /* If a keyboard was just printed, don't print the time for
              * a while.
@@ -42,7 +42,7 @@ void runSimpleAlgorithm()
             timeOnPrint = time(NULL) + printTimeInterval;
         } else if (time(NULL) >= timeOnPrint) {
             printf("%d Rounds\n", roundNum);
-            printTime(startTime);
+            printTime(startTime, "Time elapsed");
             timeOnPrint = time(NULL) + printTimeInterval;
             printTimeInterval = 1.5 * printTimeInterval + 1;
         }
@@ -68,6 +68,7 @@ void runAlgorithm()
     int gtbRounds = GTB_ROUNDS;
     time_t printTimeInterval = PRINT_TIME_INTERVAL;
     time_t timeOnPrint = arg.startTime + printTimeInterval;
+    time_t timeLastGTB = arg.startTime;
     
     int64_t prevBestFitness = FITNESS_MAX;
     
@@ -118,16 +119,21 @@ void runAlgorithm()
 		        
         if (arg.bestk.fitness < prevBestFitness) {
             prevBestFitness = arg.bestk.fitness;
+
             if (consoleEsc)
                 printf("\033[H"); /*goto home pos*/
-
             printPercentages(&arg.bestk);
 
             if (consoleEsc)
                 printf("\033[%dH", consoleText1stLine+3); /*goto line */
 
-            printTime(arg.startTime);
-            
+            printTime(arg.startTime, "Time elapsed");
+
+            if (consoleEsc) {
+                printf("\033[%dH", consoleText1stLine + 5); /*goto line */
+                printCurrTime("last update");
+            }
+
             /* If a keyboard was just printed, don't print the time for  
              * a while.
              */
@@ -140,7 +146,12 @@ void runAlgorithm()
             if (consoleEsc)
                 printf("\033[%dH", consoleText1stLine + 3); /*goto line */
 
-            printTime(arg.startTime);
+            printTime(arg.startTime, "Time elapsed");
+
+            if (consoleEsc) {
+                printf("\033[%dH", consoleText1stLine + 4); /*goto line */
+                printTime(timeLastGTB, "last Found greatToBest()");
+            }
 
             if (consoleEsc)
                 timeOnPrint = time(NULL) + 1;
@@ -155,15 +166,24 @@ void runAlgorithm()
         
         if (arg.bestk.fitness < bestBeforeGTB) {
             prevBestFitness = arg.bestk.fitness;
+
+            if (detailedOutput && !consoleEsc) 
+                printf("\n***Found from greatToBest()***\n");
+
             if (consoleEsc)
                 printf("\033[H"); /*goto home pos*/
-            //if (detailedOutput)
-            //    printf("\n***Found from greatToBest()***\n");
             printPercentages(&arg.bestk);
+            timeLastGTB = time(NULL);
 
             if (consoleEsc)
                 printf("\033[%dH", consoleText1stLine + 3); /*goto line */
-            printTime(arg.startTime);
+            printTime(arg.startTime, "Time elapsed");
+
+            if (consoleEsc) {
+                printf("\033[%dH", consoleText1stLine + 5); /*goto line */
+                printCurrTime("last update");
+            }
+
         }
 	}
 }
@@ -233,7 +253,12 @@ void * runThreadsRec(void *arg)
 
                 if (consoleEsc)
                     printf("\033[%dH", consoleText1stLine + 3); /*goto line */
-                printTime(threadArg->startTime);
+                printTime(threadArg->startTime, "Time elapsed");
+
+                if (consoleEsc) {
+                    printf("\033[%dH", consoleText1stLine + 5); /*goto line */
+                    printCurrTime("last update");
+                }
             }
         }
     }

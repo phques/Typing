@@ -70,9 +70,9 @@
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <NMakeBuildCommandLine>make debug ../Makefile</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>make --directory .. debug</NMakeBuildCommandLine>
     <NMakeOutput>optimizer.exe</NMakeOutput>
-    <NMakeCleanCommandLine>make clean ../Makefile</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine>make --directory .. clean</NMakeCleanCommandLine>
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,9 +82,9 @@
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <NMakeBuildCommandLine>make release ../Makefile</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>make --directory .. release</NMakeBuildCommandLine>
     <NMakeOutput>optimizer.exce</NMakeOutput>
-    <NMakeCleanCommandLine>make clean ../Makefile</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine>make --directory .. clean</NMakeCleanCommandLine>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <ItemDefinitionGroup>
