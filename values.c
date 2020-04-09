@@ -291,7 +291,7 @@ int initValues()
 			// based on currnt numbers from beakl lasalle
 			//nb: no anglez weights
 		   250,  50,  50, 100, 200,  200, 100,  50,  50, 250,
-			90,   4,  0,   4, 110,  110,   4,   0,   4, 90,
+			90,   0,  0,   0, 110,  110,   0,   0,   0, 90,
 		   180,  90,  90,  80, 140,  135,  80,  90,  90, 180
 		};
 		// try going back to closer to original beakl (beakl + angleZ)
