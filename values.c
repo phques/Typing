@@ -16,7 +16,7 @@ int checkKeysMask()
 
 	if (strlen(keysMask) > 0) {
 		if (strlen(keysMask) != ksize) {
-			printf("Wrong nbr of keys in mask (%d), need %d\n", strlen(keysMask), ksize);
+			printf("Wrong nbr of keys in mask (%ld), need %d\n", strlen(keysMask), ksize);
 			useMask = FALSE;
 		}
 		else {
@@ -211,10 +211,18 @@ int initValues()
         // mod PQ 2018-04, trying to get LaSalle fingering, where home row uses awef jio;
         // hmm not really home block anymore !!
 		static int64_t costsCopy[KSIZE_MAX] = {
-		    999, 0 ,  0  ,100, 999,  999,100, 0  , 0 ,  999,
-		    90 , 50,  50 , 0 , 110,  100, 0  ,50 , 50,  90,
-		    180, 220, 220, 80, 140,  135, 80, 220, 220, 180
+			999, 0 ,  0 , 100, 999,  999, 100, 0  , 0 ,  999,
+			90 , 50,  50 , 0 ,  90,   85, 0 ,  50 , 50,  90,
+			180, 220, 220, 80, 120,  115, 80,  220, 220, 180
 		};
+		    // 999, 0 ,  0 , 100, 999,  999, 100, 0  , 0 ,  999,
+		    // 90 , 50,  50 , 0 ,  90,   85, 0 ,  50 , 50,  90,
+		    // 180, 220, 220, 80, 140,  135, 80,  220, 220, 180
+
+		    // 999, 0 ,  0 , 100, 999,  999, 100, 0  , 0 ,  999,
+		    // 90 , 50,  50 , 0 , 110,  100, 0 ,  50 , 50,  90,
+		    // 180, 220, 220, 80, 140,  135, 80,  220, 220, 180
+
 		    // 999, 10,  0  ,100, 999,  999,100, 0  , 10,  999,
 		    // 90 , 50,  50 , 5 , 110,  100, 5  ,50 , 50,  90,
 		    // 180, 220, 220, 80, 140,  135, 80, 220, 220, 180
