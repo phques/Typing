@@ -8,6 +8,29 @@
 
 #include "tools.h"
 
+int64_t totalMon;
+int64_t totalDi;
+int monLen, diLen, triLen;
+struct Monograph monographs[MON_LEN_MAX];
+struct Digraph digraphs[DI_LEN_MAX];
+char keysToInclude[200];
+Keyboard nilKeyboard;
+struct VarInfo variables[VARIABLES_MAX_LEN];
+int variablesLength;
+char qwerty[30];
+int hand[KSIZE_MAX];
+int finger[KSIZE_MAX];
+int column[KSIZE_MAX];
+int row[KSIZE_MAX];
+int homeRow;
+int firstNumberIndex;
+int isCenter[KSIZE_MAX];
+int isOutside[KSIZE_MAX];
+int isCenterOrOutside[KSIZE_MAX];
+int printable[KSIZE_MAX];
+int rowChangeTableUp[5][5];
+int rowChangeTableDown[5][5];
+
 
 void copyArray(int dest[], int src[], int length)
 {
@@ -945,6 +968,8 @@ void initVariables()
     ADD_VAR(doubleJump, NULL);
     ADD_VAR(toCenter, NULL);
     ADD_VAR(toOutside, NULL);
+    ADD_VAR(shiftCost, NULL);
+    ADD_VAR(doubleShiftCost, NULL);
     
 #undef ADD_VAR
 }

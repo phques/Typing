@@ -9,7 +9,7 @@
 
 #ifndef __KEYBOARD_H__
 #define __KEYBOARD_H__
- 
+
 #include <stdlib.h>
 #include <limits.h>
 #include <math.h>
@@ -53,17 +53,12 @@ int locIgnoreShifted(Keyboard *k, char c);
 int locWithShifted(Keyboard *k, char c);
 
 /* To use, set USE_COST_ARRAY to TRUE. */
-int allDigraphCosts[KSIZE_MAX][KSIZE_MAX];
+extern int allDigraphCosts[KSIZE_MAX][KSIZE_MAX];
 
 int calcFitnessDirect(Keyboard *k);
 int scoreDigraphDirect(Keyboard *k, char digraph[], int64_t multiplier);
 int calcFitness(Keyboard *k);
 int scoreDigraph(Keyboard *k, char digraph[], int64_t multiplier, int allLocs[]);
-
-
-char shortcutKeys[4];
-char seedLayout[KSIZE_MAX]; // Holds every letter and is randomly shuffled. Used to seed the keyboards.
-unsigned int seedVal;
 
 int64_t calcShortcuts(Keyboard *k);
 int64_t calcQWERTY(Keyboard *k);
@@ -81,5 +76,8 @@ int calcRingJump(int loc0, int loc1);
 int calcToCenter(int loc0, int loc1);
 int calcToOutside(int loc0, int loc1);
 
+extern char shortcutKeys[4];
+extern char seedLayout[KSIZE_MAX]; // Holds every letter and is randomly shuffled. Used to seed the keyboards.
+extern unsigned int seedVal;
 
 #endif

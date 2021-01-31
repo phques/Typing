@@ -24,7 +24,7 @@
 #ifdef SYS_TIME_H
 #include <sys/time.h>
 #endif
- 
+
 #define K_NO 0
 #define K_STANDARD 1
 #define K_KINESIS 2
@@ -44,11 +44,11 @@
 #define FALSE 0
 
 /* Set fullKeyboard in initValues(). */
-int fullKeyboard;
-int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 K_CURLAZ32 */
+extern int fullKeyboard;
+extern int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 K_CURLAZ32 */
 
-int ksize, trueksize, knumrows;
-char *kbdFilename;
+extern int ksize, trueksize, knumrows;
+extern char *kbdFilename;
 
 #define FITNESS_MAX INT64_MAX
 #define KSIZE_MAX 200
@@ -85,19 +85,19 @@ char *kbdFilename;
 #define CHANCE_TO_USE_BRUTE_FORCE 0.25
 #define GTBBF_ROUNDS 8                  /* recommended 4-10 */
 
-int64_t distanceCosts[KSIZE_MAX];
-int64_t shortcutCosts[KSIZE_MAX];
+extern int64_t distanceCosts[KSIZE_MAX];
+extern int64_t shortcutCosts[KSIZE_MAX];
 
-double fingerPercentMaxes[FINGER_COUNT];
-int64_t fingerWorkCosts[FINGER_COUNT];
+extern double fingerPercentMaxes[FINGER_COUNT];
+extern int64_t fingerWorkCosts[FINGER_COUNT];
 
-char keysMask[200]; // "1100.." use/not use key. Default is empty
+extern char keysMask[200]; // "1100.." use/not use key. Default is empty
 
 /*  list of keys that need to be kept with their shifted/unshifted counterpart */
-char keepShiftPairsChars[512]; 
+extern char keepShiftPairsChars[512]; 
 
 
-int detailedOutput, numThreads;
+extern int detailedOutput, numThreads;
 
 /* 0 for false, 1 for true. 
  * keepNumbers: 2 if numbers can move about but must stay in number row.
@@ -107,14 +107,14 @@ int detailedOutput, numThreads;
  * The Former: keepNumbers, keepShiftPairs, keepTab
  * The Latter: keepZXCV, keepBrackets, keepNumbersShifted
  */
-int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, keepShiftPairs, 
+extern int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, keepShiftPairs, 
 	keepTab, keepConsonantsRight, 
 	keepNumbersShifted, /* for bogboar */
     consoleEsc;
-int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost, 
+extern int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost, 
 	bracketsCost, numbersShiftedCost;
 
-int distance, inRoll, outRoll, sameHand, sameFingerP, sameFingerR, sameFingerM, 
+extern int distance, inRoll, outRoll, sameHand, sameFingerP, sameFingerR, sameFingerM, 
 	sameFingerI, sameFingerT, rowChangeDown, rowChangeUp, handWarp, handSmooth, 
 	homeJump, homeJumpIndex, doubleJump, ringJump, toCenter, toOutside, 
 	shiftCost, doubleShiftCost, leftHandCost, rightHandCost, singleKeySameFinger;

@@ -8,6 +8,30 @@
 
 #include "values.h"
 
+int fullKeyboard;
+int keyboardForm; /* K_NO K_STANDARD K_KINESIS K_IPHONE K_CURLAZ33 K_CURLAZ32 */
+int ksize, trueksize, knumrows;
+char *kbdFilename;
+int64_t distanceCosts[KSIZE_MAX];
+int64_t shortcutCosts[KSIZE_MAX];
+double fingerPercentMaxes[FINGER_COUNT];
+int64_t fingerWorkCosts[FINGER_COUNT];
+char keysMask[200]; // "1100.." use/not use key. Default is empty
+char keepShiftPairsChars[512]; 
+int detailedOutput, numThreads;
+int keepZXCV, keepQWERTY, keepNumbers, keepBrackets, keepShiftPairs, 
+	keepTab, keepConsonantsRight, 
+	keepNumbersShifted, /* for bogboar */
+    consoleEsc;
+int zCost, xCost, cCost, vCost, qwertyPosCost, qwertyFingerCost, qwertyHandCost, 
+	bracketsCost, numbersShiftedCost;
+
+int distance, inRoll, outRoll, sameHand, sameFingerP, sameFingerR, sameFingerM, 
+	sameFingerI, sameFingerT, rowChangeDown, rowChangeUp, handWarp, handSmooth, 
+	homeJump, homeJumpIndex, doubleJump, ringJump, toCenter, toOutside, 
+	shiftCost, doubleShiftCost, leftHandCost, rightHandCost, singleKeySameFinger;
+
+
 /* returns True if keysMask is valid / should be used.
  Also sets trueksize according to mask */
 int checkKeysMask()
@@ -298,10 +322,18 @@ int initValues()
 		static int64_t costsCopy[KSIZE_MAX] = {
 			// based on currnt numbers from beakl lasalle
 			//nb: no anglez weights
-		   250,  50,  50, 100, 200,  200, 100,  50,  50, 250,
-			90,   4,  0,   4, 110,  110,   4,   0,   4, 90,
-		   180,  90,  90,  80, 140,  135,  80,  90,  90, 180
+			999, 50,  50, 100, 999,  999, 100, 50 , 50,  999,
+			110,  0,  0 ,  0 ,  90,   85, 0 ,   0 ,  0, 110,
+			180, 90, 90, 80, 120,  115, 80,  90, 90, 180
 		};
+			// 999, 50,  50, 100, 999,  999, 100, 50 , 50,  999,
+			// 90 ,  0,  0 ,  0 ,  90,   85, 0 ,   0 ,  0,  90,
+			// 180, 90, 90, 80, 120,  115, 80,  90, 90, 180
+
+		 //   250,  50,  50, 100, 200,  200, 100,  50,  50, 250,
+			// 90,   4,  0,   4, 110,  110,   4,   0,   4, 90,
+		 //   180,  90,  90,  80, 140,  135,  80,  90,  90, 180
+
 		// try going back to closer to original beakl (beakl + angleZ)
 		// tried top row index 15 vs 10 but worst numbers !?
 			//90, 10, 10, 10, 50, 50, 10, 10, 10, 90,
@@ -462,7 +494,7 @@ void initCosts()
 	ringJump =       40;
 	toCenter =		 30;
 	toOutside =		 30;
-	
+
 	shiftCost =		100;
 	doubleShiftCost=150;
 

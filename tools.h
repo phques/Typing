@@ -8,7 +8,7 @@
 
 #ifndef __TOOLS_H__
 #define __TOOLS_H__
- 
+
 #include "values.h"
 
 #define streq(str1, str2) (strcmp(str1, str2) == 0)
@@ -26,9 +26,9 @@
 
 /* Global variable declarations */
 
-int64_t totalMon;
-int64_t totalDi;
-int monLen, diLen, triLen;
+extern int64_t totalMon;
+extern int64_t totalDi;
+extern int monLen, diLen, triLen;
 
 struct Monograph {
     char key;
@@ -45,8 +45,8 @@ struct NGraph {
     int64_t value;
 };
 
-struct Monograph monographs[MON_LEN_MAX];
-struct Digraph digraphs[DI_LEN_MAX];
+extern struct Monograph monographs[MON_LEN_MAX];
+extern struct Digraph digraphs[DI_LEN_MAX];
 
 /* Constant declarations */
 
@@ -77,7 +77,7 @@ struct Digraph digraphs[DI_LEN_MAX];
 		return 1; \
 	}
 
-char keysToInclude[200];
+extern char keysToInclude[200];
 
 typedef struct {
 	char layout2[2][KSIZE_MAX + 1]; /* The one extra character is set to '\0' so 
@@ -99,7 +99,7 @@ typedef struct {
 } Keyboard;
 
 
-Keyboard nilKeyboard;
+extern Keyboard nilKeyboard;
 
 void copyArray(int dest[], int src[], int length);
 void printTime(time_t start, const char* prefixMsg);
@@ -129,8 +129,8 @@ struct VarInfo {
 };
 
 #define VARIABLES_MAX_LEN 100
-struct VarInfo variables[VARIABLES_MAX_LEN];
-int variablesLength;
+extern struct VarInfo variables[VARIABLES_MAX_LEN];
+extern int variablesLength;
 
 void initVariables();
 int getValue(const char *name);
@@ -142,60 +142,59 @@ char getMatchingBracket(char c);
 
 int keepShiftPair(char c);
 
-char qwerty[30];
+extern char qwerty[30];
 
 /* For each key, indicates which hand (LEFT or RIGHT) is responsible for typing 
  * that key.
  */
-int hand[KSIZE_MAX];
+extern int hand[KSIZE_MAX];
 
 /* For each key, indicates which finger (PINKY, RING, MIDDLE or INDEX) is 
  * responsible for typing that key.
  */
-int finger[KSIZE_MAX];
+extern int finger[KSIZE_MAX];
 
 /* Where 0 is pinky, -1 is left of pinky, ..., 3 is index, 4 is right of index.
  * Anything greater than 4 is thumb.
  */
-int column[KSIZE_MAX];
+extern int column[KSIZE_MAX];
 
 /* For each key, indicates which row that key lies on. The top row is 0, 
  * the row below it is 1, the row below that is 2, etc.
  */
-int row[KSIZE_MAX];
+extern int row[KSIZE_MAX];
 
 /* Indicates which row is the home row.
  */
-int homeRow;
+extern int homeRow;
 
 /* Indicates the index of the first number in the layout, assuming 
  * keepNumbers is TRUE.
  */
-int firstNumberIndex;
+extern int firstNumberIndex;
 
 /* For each key, indicates whether that key requires a reach to the center.
  */
-int isCenter[KSIZE_MAX];
+extern int isCenter[KSIZE_MAX];
 
 /* For each key, indicates whether that key requires a reach to the outside.
  */
-int isOutside[KSIZE_MAX];
+extern int isOutside[KSIZE_MAX];
 
 /* For each key, indicates whether that key requires a reach to the center OR 
  * a reach to the outside. This one is produced automatically from isCenter[] 
  * and isOutside[].
  */
-int isCenterOrOutside[KSIZE_MAX];
+extern int isCenterOrOutside[KSIZE_MAX];
 
 /* For each key, indicates whether that key should be printed. Any place-holder 
  * key that does not actually exist on the keyboard should not be printed.
  */
-int printable[KSIZE_MAX];
+extern int printable[KSIZE_MAX];
 
 /* Lookup tables for calcRowChange(). Each row and column represents a finger.
  */
-int rowChangeTableUp[5][5];
-int rowChangeTableDown[5][5];
-
+extern int rowChangeTableUp[5][5];
+extern int rowChangeTableDown[5][5];
 
 #endif

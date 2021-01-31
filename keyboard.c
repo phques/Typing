@@ -8,6 +8,11 @@
 
 #include "keyboard.h"
 
+int allDigraphCosts[KSIZE_MAX][KSIZE_MAX];
+char shortcutKeys[4];
+char seedLayout[KSIZE_MAX]; // Holds every letter and is randomly shuffled. Used to seed the keyboards.
+unsigned int seedVal;
+
 int legalBox[] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
